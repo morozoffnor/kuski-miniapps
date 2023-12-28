@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  miniapp-server:
+    container_name: miniappp-server
+    image: morozoffnor/kusochkiminiapps:latest
+    restart: unless-stopped
+    ports:
+      - '4000:4000'
+    environment:
+      - BOTAPI_TOKEN=GENERATE STRONG TOKEN
+      - BOTAPI_HOST=BOT API HOST
+      - BOTAPI_PORT=BOT API PORT
+      - SERVER_PORT=MINIAPP SERVER PORT
+# For single machine deployment
+#     networks:
+#       - kusochkibot_default
+
+# networks:
+#   kusochkibot_default:
+#     external: true
