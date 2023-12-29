@@ -35,4 +35,12 @@
 			grid-template-columns: 1fr 16em;
 		}
 	}
+    ::marker {
+        content: ''
+    }
+
+    ul {
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>

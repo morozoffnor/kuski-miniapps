@@ -13,3 +13,13 @@
         {/each}
     {/await}
 </ul>
+
+<style>
+    li {
+        list-style-type: none;
+    }
+
+    ::marker {
+        content: ''
+    }
+</style>

@@ -18,8 +18,6 @@ export async function load({params}) {
     if (!user) throw error(404);
 
     return {
-        slug: params.slug,
-        money: user.money,
-        userName: user.userName
+        user
     }
 }
