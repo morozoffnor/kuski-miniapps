@@ -1,11 +1,10 @@
 <script>
-    import BottomPart from '$lib/BottomPart.svelte';
 
     export let data;
     import UserCard from '$lib/UserCard.svelte';
 </script>
 
-<h1>Users</h1>
+<h1>Users:</h1>
 
 <ul>
     {#await data}
@@ -17,7 +16,6 @@
     {/await}
 </ul>
 
-<BottomPart />
 
 <style>
     li {
@@ -25,7 +23,9 @@
     }
 
     h1 {
-        color: whitesmoke
+        color: whitesmoke;
+        font-family: 'Comic Sans MS',monospace;
+        text-align: center;
     }
 
     ul {

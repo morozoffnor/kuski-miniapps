@@ -1,8 +1,6 @@
 <script>
-	import BottomPart from '$lib/BottomPart.svelte';
-
   export let data;
-    import {page} from '$app/stores';
+  import {page} from '$app/stores';
 	import UserCard from '$lib/UserCard.svelte';
 </script>
 
@@ -13,7 +11,7 @@
 </div>
 
 <aside>
-    <h2>More users</h2>
+    <h2>More users:</h2>
     <ul>
         {#await data}
         Loading users...
@@ -29,12 +27,11 @@
     </ul>
 </aside>
 
-<BottomPart/>
-
 <style>
     h2 {
         color: whitesmoke;
         text-align: center;
+        font-family: 'Comic Sans MS',monospace;
     }
     ::marker {
         content: '';

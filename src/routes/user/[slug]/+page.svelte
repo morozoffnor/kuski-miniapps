@@ -1,5 +1,5 @@
 <script>
-	import UserDetailsView from "./UserDetailsView.svelte";
+	import UserDetailsView from "$lib/UserDetailsView.svelte";
 
     export let data;
 
