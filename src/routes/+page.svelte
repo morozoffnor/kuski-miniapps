@@ -8,8 +8,6 @@
     h1 {
         color: whitesmoke
     }
-
-
     a:visited {
         text-decoration: none;
         }
@@ -17,7 +15,4 @@
     a:hover {
         text-decoration: underline;
         }
-
-    
-    
 </style>

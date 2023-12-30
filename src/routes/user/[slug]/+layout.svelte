@@ -1,5 +1,7 @@
 <script>
-	export let data;
+	import BottomPart from '$lib/BottomPart.svelte';
+
+  export let data;
     import {page} from '$app/stores';
 	import UserCard from '$lib/UserCard.svelte';
 </script>
@@ -18,7 +20,7 @@
         {:then data} 
             {#each data.users as { id, name, lowest }}
                 {#if   $page.params.slug == id}
-                <!-- <li><a href="/user/{id}" style="color: red;">{name}</a></li> -->
+                <!-- do nothing -->
                 {:else}
                 <li><UserCard id={id} name={name} lowest={lowest}/></li>
                 {/if}
@@ -27,26 +29,23 @@
     </ul>
 </aside>
 
-<style>
-	h2 {
-        color: whitesmoke;
-        margin-left: 115px;
+<BottomPart/>
 
+<style>
+    h2 {
+        color: whitesmoke;
+        text-align: center;
     }
     ::marker {
-        content: ''
+        content: '';
     }
 
     ul {
-        margin-left: auto;
-        margin-right: auto;
-        place-self: center;
+        padding-left: unset;
     }
     li {
-        margin-top: 5px
+        margin-top: 5px;
+
     }
 
-    aside {
-        place-self: center;
-    }
 </style>

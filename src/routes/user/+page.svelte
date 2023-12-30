@@ -24,24 +24,11 @@
         color: whitesmoke
     }
 
+    ul {
+        padding-left: unset;
+    }
+
     ::marker {
         content: ''
     }
-    /* a   {
-        text-decoration: none;
-        }
-
-    a:visited {
-        text-decoration: none;
-        }
-
-    a:hover {
-        text-decoration: underline;
-        }
-
-    a:active {
-        text-decoration: underline;
-        } */
-
-    
 </style>
