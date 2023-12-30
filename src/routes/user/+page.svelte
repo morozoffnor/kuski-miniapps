@@ -1,4 +1,6 @@
 <script>
+    import BottomPart from '$lib/BottomPart.svelte';
+
     export let data;
     import UserCard from '$lib/UserCard.svelte';
 </script>
@@ -9,11 +11,13 @@
     {#await data}
         Loading users...
     {:then data} 
-    {#each data.users as { id, name, lowest }}
-        <li><UserCard id={id} name={name} lowest={lowest}/></li>
-{/each}
+        {#each data.users as { id, name, lowest }}
+            <li><UserCard id={id} name={name} lowest={lowest}/></li>
+        {/each}
     {/await}
 </ul>
+
+<BottomPart />
 
 <style>
     li {
