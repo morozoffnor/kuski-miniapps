@@ -1,5 +1,5 @@
 <script>
-	import UserDetailsCard from "./UserDetailsCard.svelte";
+	import UserDetailsView from "./UserDetailsView.svelte";
 
     export let data;
 
@@ -8,7 +8,7 @@
 {#await data}
     Fetching user data...
 {:then data} 
-    <UserDetailsCard user={data.user} />
+    <UserDetailsView user={data.user} />
 {:catch e}
     {e}
 {/await}

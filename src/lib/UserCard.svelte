@@ -23,21 +23,29 @@
 
 <style>
     h2 {
-        margin-left: 5px;
+        margin-left: 20px;
         line-height: 0.5;
     }
     p {
         line-height: 0.01;
-        margin-left: 5px;
+        margin-left: 20px;
+        color: grey
     }
     div {
         position: relative;
         margin-top: 5px;
         margin-bottom: 5px;
         display: table;
-        outline-style: dotted;
+        /* outline-style: dotted; */
+        outline-color: whitesmoke;
         width: 300px;
         height: calc(height + 1px);
+        border: 1px solid rgba(255, 255, 255, .25);
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+
+        backdrop-filter: blur(15px);
     }
     div a::before {
         content: '';
@@ -46,5 +54,15 @@
         bottom: 0px;
         left: 0px;
         right: 0px;
+    }
+        a {
+        padding-bottom: 1px;
+        color: white;
+        text-decoration: none;
+    }
+
+    
+    a:hover {
+        text-decoration: underline;
     }
 </style>

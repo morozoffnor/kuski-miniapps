@@ -1,5 +1,6 @@
 <script>
     export let data;
+    import UserCard from '$lib/UserCard.svelte';
 </script>
 
 <h1>Users</h1>
@@ -8,9 +9,9 @@
     {#await data}
         Loading users...
     {:then data} 
-        {#each data.users as { id, name}}
-        <li><a href="/user/{id}">{name}</a></li>
-        {/each}
+    {#each data.users as { id, name, lowest }}
+        <li><UserCard id={id} name={name} lowest={lowest}/></li>
+{/each}
     {/await}
 </ul>
 
@@ -19,7 +20,28 @@
         list-style-type: none;
     }
 
+    h1 {
+        color: whitesmoke
+    }
+
     ::marker {
         content: ''
     }
+    /* a   {
+        text-decoration: none;
+        }
+
+    a:visited {
+        text-decoration: none;
+        }
+
+    a:hover {
+        text-decoration: underline;
+        }
+
+    a:active {
+        text-decoration: underline;
+        } */
+
+    
 </style>

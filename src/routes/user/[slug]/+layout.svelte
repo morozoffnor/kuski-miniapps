@@ -1,7 +1,7 @@
 <script>
 	export let data;
     import {page} from '$app/stores';
-	import UserCard from './UserCard.svelte';
+	import UserCard from '$lib/UserCard.svelte';
 </script>
 
 <div class="layout">
@@ -28,13 +28,11 @@
 </aside>
 
 <style>
-	@media (min-width: 640px) {
-		.layout {
-			display: grid;
-			gap: 2em;
-			grid-template-columns: 1fr 16em;
-		}
-	}
+	h2 {
+        color: whitesmoke;
+        margin-left: 115px;
+
+    }
     ::marker {
         content: ''
     }
@@ -42,5 +40,13 @@
     ul {
         margin-left: auto;
         margin-right: auto;
+        place-self: center;
+    }
+    li {
+        margin-top: 5px
+    }
+
+    aside {
+        place-self: center;
     }
 </style>

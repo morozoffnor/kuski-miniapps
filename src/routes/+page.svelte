@@ -1,2 +1,23 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1> Kuski Bot </h1>
+<a href="/user/"><h1>Users</h1></a>
+
+<style>
+    :global(body) {
+        background-color: black;
+    }
+    h1 {
+        color: whitesmoke
+    }
+
+
+    a:visited {
+        text-decoration: none;
+        }
+
+    a:hover {
+        text-decoration: underline;
+        }
+
+    
+    
+</style>

@@ -5,4 +5,17 @@
     export let user;
 </script>
 
-<p>{user.userid}</p>
+<span>
+    <p>{user.userid}</p>
+</span>
+
+
+<style>
+    p {
+        color: whitesmoke
+    }
+</style>
+
+
+
+  
