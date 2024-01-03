@@ -1,28 +1,47 @@
 <script>
+// @ts-nocheck
+
+
+	import UserStat from "./UserStat.svelte";
+
     /**
     * @type {import("../routes/user/+layout.server.js").User} user
     */
     export let user;
+
+    let statKeys = Object.keys(user.stats);
+    console.log(statKeys);
 </script>
 
 
-<p>{user.userid}</p>
+<h1><p class="username">{user.userName}</p></h1>
 <table>
     <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>age</td>
+        <div>
+            <p class="tableTitle">
+                Wins: {user.cockStats.wins}
+            </p>
+            <td><UserStat name={'lowest Today'} stat={user.cockStats.currentSize || "TBD"}/></td>
+            <td><UserStat name={'lowest Size'} stat={user.cockStats.lowestSize || "TBD"}/></td>
+            <td><UserStat name={'highest Size'} stat={user.cockStats.highestSize || "TBD"}/></td>
+        </div>
     </tr>
     <tr>
-        <td>1</td>
-        <td>zhangsan</td>
-        <td>18</td>
+        <div>
+            <p class="tableTitle">
+                Chat Stats
+            </p>
+            {#each statKeys as key}
+                <td><UserStat name={key} stat={user.stats[key] || "TBD"}/></td>
+            {/each}
+            <!-- <td><UserStat name={'imagesSent'} stat={user.stats.imagesSent || "TBD"}/></td>
+            <td><UserStat name={'circlesSent'} stat={user.stats.circlesSent || "TBD"}/></td>
+            <td><UserStat name={'videosSent'} stat={user.stats.videosSent || "TBD"}/></td>
+            <td><UserStat name={'voicesSent'} stat={user.stats.voicesSent || "TBD"}/></td>
+            <td><UserStat name={'stickersSent'} stat={user.stats.stickersSent || "TBD"}/></td> -->
+        </div>
     </tr>
-    <tr>
-        <td>2</td>
-        <td>lisi</td>
-        <td>20</td>
-    </tr>
+    
 </table>
 
 
@@ -30,7 +49,25 @@
 <style>
     p {
         color: whitesmoke
+        
     }
+
+    p.tableTitle {
+        color: whitesmoke;
+        line-height: 0.01;
+        padding-bottom: unset;
+        padding-top: unset;
+        margin-bottom: 5px;
+        text-align:center;
+        font-family: 'Comic Sans MS',monospace;
+    }
+
+    p.username {
+        text-align: center;
+        font-family: 'Comic Sans MS',monospace;
+    }
+
+    
 
     table {
         color: whitesmoke;
@@ -39,15 +76,33 @@
     }
 
     tr {
-        
         display: block;
     }
 
     td {
-        border: 1px solid grey;
-        width: 100px;
+        
+        width:100px;
         display: inline-block;
+        padding-left: unset;
     }
+
+    div {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: table;
+            /* outline-style: dotted; */
+            outline-color: whitesmoke;
+            width: 330px;
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+
+            backdrop-filter: blur(15px);
+        }
 </style>
 
 

@@ -1,5 +1,8 @@
 <script>
-	export let text = null
+	/**
+	 * @type {null | String}
+	 */
+	 export let text = null
 </script>
 
 
@@ -10,7 +13,7 @@
 		<p>
 			KusochkiBot 2024
 			<br>
-			<a href="https://github.com/morozoffnor">Source code (Github)</a>
+			<a href="https://github.com/morozoffnor/kuski-miniapps">Source code (Github)</a>
 		</p>
 	{/if}
 </p>

@@ -4,13 +4,31 @@
 	 */
 	export let name;
 	/**
-	 * @type {Number} stat
+	 * @type {Number | String} stat
 	 */
 	export  let stat;
 </script>
 
 <div>
 	<p>
-		{name} {stat}
+		{name}
+	</p>
+	<p>
+		{stat}
 	</p>
 </div>
+
+<style>
+	div {
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+	}
+
+	p {
+		width: 110px;
+		padding-left: unset;
+		text-align: center;
+		font-family: 'Comic Sans MS',monospace;
+	}
+</style>
