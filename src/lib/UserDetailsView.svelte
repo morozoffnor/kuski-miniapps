@@ -10,7 +10,6 @@
     export let user;
 
     let statKeys = Object.keys(user.stats);
-    console.log(statKeys);
 </script>
 
 
@@ -34,11 +33,6 @@
             {#each statKeys as key}
                 <td><UserStat name={key} stat={user.stats[key] || "TBD"}/></td>
             {/each}
-            <!-- <td><UserStat name={'imagesSent'} stat={user.stats.imagesSent || "TBD"}/></td>
-            <td><UserStat name={'circlesSent'} stat={user.stats.circlesSent || "TBD"}/></td>
-            <td><UserStat name={'videosSent'} stat={user.stats.videosSent || "TBD"}/></td>
-            <td><UserStat name={'voicesSent'} stat={user.stats.voicesSent || "TBD"}/></td>
-            <td><UserStat name={'stickersSent'} stat={user.stats.stickersSent || "TBD"}/></td> -->
         </div>
     </tr>
     
