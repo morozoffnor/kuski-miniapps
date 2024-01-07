@@ -2,9 +2,8 @@
 	/**
 	 * @type {null | String}
 	 */
-	 export let text = null
+	export let text = null;
 </script>
-
 
 <p>
 	{#if text}
@@ -12,7 +11,7 @@
 	{:else}
 		<p>
 			KusochkiBot 2024
-			<br>
+			<br />
 			<a href="https://github.com/morozoffnor/kuski-miniapps">Source code (Github)</a>
 		</p>
 	{/if}
@@ -20,20 +19,20 @@
 
 <style>
 	p {
-      color: dimgrey;
-			text-align: center;
-			position: relative;
+		color: dimgrey;
+		text-align: center;
+		position: relative;
 	}
 	a {
-      color: dimgrey;
-      text-decoration: none;
+		color: dimgrey;
+		text-decoration: none;
 	}
-  a:visited {
-      color: dimgrey;
-      text-decoration: none;
-  }
+	a:visited {
+		color: dimgrey;
+		text-decoration: none;
+	}
 
-  a:hover {
-      text-decoration: underline;
-  }
+	a:hover {
+		text-decoration: underline;
+	}
 </style>

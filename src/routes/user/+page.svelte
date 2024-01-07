@@ -1,38 +1,36 @@
 <script>
-
-    export let data;
-    import UserCard from '$lib/UserCard.svelte';
+	export let data;
+	import UserCard from '$lib/UserCard.svelte';
 </script>
 
 <h1>Users:</h1>
 
 <ul>
-    {#await data}
-        Loading users...
-    {:then data} 
-        {#each data.users as { id, name, lowest }}
-            <li><UserCard id={id} name={name} lowest={lowest}/></li>
-        {/each}
-    {/await}
+	{#await data}
+		Loading users...
+	{:then data}
+		{#each data.users as { id, name, lowest }}
+			<li><UserCard {id} {name} {lowest} /></li>
+		{/each}
+	{/await}
 </ul>
 
-
 <style>
-    li {
-        list-style-type: none;
-    }
+	li {
+		list-style-type: none;
+	}
 
-    h1 {
-        color: whitesmoke;
-        font-family: 'Comic Sans MS',monospace;
-        text-align: center;
-    }
+	h1 {
+		color: whitesmoke;
+		font-family: 'Comic Sans MS', monospace;
+		text-align: center;
+	}
 
-    ul {
-        padding-left: unset;
-    }
+	ul {
+		padding-left: unset;
+	}
 
-    ::marker {
-        content: ''
-    }
+	::marker {
+		content: '';
+	}
 </style>

@@ -1,12 +1,13 @@
 <script>
-import BottomPart from '$lib/BottomPart.svelte';
+	import BottomPart from '$lib/BottomPart.svelte';
 </script>
 
 <slot />
 
 <BottomPart />
+
 <style>
-    :global(body) {
-        background-color: black;
-    }
+	:global(body) {
+		background-color: black;
+	}
 </style>

@@ -1,8 +1,8 @@
-import {config} from './config.js';
+import { config } from './config.js';
 
 const BOTAPI_HOST = config.BOTAPI_HOST || 'http://localhost';
 const BOTAPI_PORT = config.BOTAPI_PORT || 3001;
-const BOTAPI_TOKEN = config.BOTAPI_TOKEN || 'no'
+const BOTAPI_TOKEN = config.BOTAPI_TOKEN || 'no';
 
 /**
  * @typedef {Object} User
@@ -27,31 +27,29 @@ const BOTAPI_TOKEN = config.BOTAPI_TOKEN || 'no'
  * @property {number} __v - The version key.
  */
 
-
 /**
  * @param {String} id
  * @returns {Promise<User>}
  */
 export async function getUser(id) {
-    // make a request to api using token in headers
-    const res = await fetch(`${BOTAPI_HOST}:${BOTAPI_PORT}/user/${id}`, {
-        headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`,
-            'x-api-token': BOTAPI_TOKEN
-        }
-    });
+	// make a request to api using token in headers
+	const res = await fetch(`${BOTAPI_HOST}:${BOTAPI_PORT}/user/${id}`, {
+		headers: {
+			Authorization: `Bearer ${process.env.API_TOKEN}`,
+			'x-api-token': BOTAPI_TOKEN
+		}
+	});
 
-    return res.json()
-    
+	return res.json();
 }
 
 export async function getAllUsers() {
-    const res = await fetch(`${BOTAPI_HOST}:${BOTAPI_PORT}/users/`, {
-        headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`,
-            'x-api-token': BOTAPI_TOKEN
-        }
-    });
+	const res = await fetch(`${BOTAPI_HOST}:${BOTAPI_PORT}/users/`, {
+		headers: {
+			Authorization: `Bearer ${process.env.API_TOKEN}`,
+			'x-api-token': BOTAPI_TOKEN
+		}
+	});
 
-    return res.json()
+	return res.json();
 }

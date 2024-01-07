@@ -1,6 +1,5 @@
 import { getAllUsers } from '$lib/server/users.js';
-import {error} from '@sveltejs/kit'
-
+import { error } from '@sveltejs/kit';
 
 /**
  * @typedef {Object} Stats
@@ -39,17 +38,21 @@ import {error} from '@sveltejs/kit'
  */
 
 export async function load() {
-    const users = await getAllUsers();
-    
-    if (!users) throw error(404)
+	const users = await getAllUsers();
 
-    return {
-        users: users.map((/** @type {{ userid: Number; userName: String; cockStats: { lowestSize: Number; }; }} */ user) => ({
-            id: user.userid,
-            name: user.userName,
-            lowest: user.cockStats.lowestSize
-        }))
-    };
+	if (!users) throw error(404);
+
+	return {
+		users: users.map(
+			(
+				/** @type {{ userid: Number; userName: String; cockStats: { lowestSize: Number; }; }} */ user
+			) => ({
+				id: user.userid,
+				name: user.userName,
+				lowest: user.cockStats.lowestSize
+			})
+		)
+	};
 }
 
-// returns 
+// returns

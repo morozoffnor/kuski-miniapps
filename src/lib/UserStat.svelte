@@ -6,7 +6,7 @@
 	/**
 	 * @type {Number | String} stat
 	 */
-	export  let stat;
+	export let stat;
 </script>
 
 <div>
@@ -29,6 +29,6 @@
 		width: 110px;
 		padding-left: unset;
 		text-align: center;
-		font-family: 'Comic Sans MS',monospace;
+		font-family: 'Comic Sans MS', monospace;
 	}
 </style>

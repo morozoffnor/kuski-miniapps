@@ -1,14 +1,13 @@
 <script>
-	import UserDetailsView from "$lib/UserDetailsView.svelte";
+	import UserDetailsView from '$lib/UserDetailsView.svelte';
 
-    export let data;
-
+	export let data;
 </script>
 
 {#await data}
-    Fetching user data...
-{:then data} 
-    <UserDetailsView user={data.user} />
+	Fetching user data...
+{:then data}
+	<UserDetailsView user={data.user} />
 {:catch e}
-    {e}
+	{e}
 {/await}
