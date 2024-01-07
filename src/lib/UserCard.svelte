@@ -29,7 +29,7 @@
 		line-height: 0.01;
 		margin-left: 20px;
 		color: grey;
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu';
 		font-size: small;
 	}
 	div {
@@ -58,7 +58,7 @@
 		right: 0px;
 	}
 	a {
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu';
 		padding-bottom: 1px;
 		color: whitesmoke;
 		text-decoration: none;

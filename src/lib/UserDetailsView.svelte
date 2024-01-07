@@ -46,12 +46,12 @@
 		padding-top: unset;
 		margin-bottom: 5px;
 		text-align: center;
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu';
 	}
 
 	p.username {
 		text-align: center;
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu';
 	}
 
 	table {

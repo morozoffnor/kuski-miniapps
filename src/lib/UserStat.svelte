@@ -22,13 +22,14 @@
 	div {
 		margin-left: auto;
 		margin-right: auto;
-		position: relative;
+		position: relative;	
 	}
 
 	p {
-		width: 110px;
+		width: auto;
 		padding-left: unset;
 		text-align: center;
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu';
+		font-size: smaller;
 	}
 </style>

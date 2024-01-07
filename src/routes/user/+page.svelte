@@ -22,7 +22,7 @@
 
 	h1 {
 		color: whitesmoke;
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu', monospace;
 		text-align: center;
 	}
 

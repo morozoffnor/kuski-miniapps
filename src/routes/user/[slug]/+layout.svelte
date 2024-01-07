@@ -31,7 +31,7 @@
 	h2 {
 		color: whitesmoke;
 		text-align: center;
-		font-family: 'Comic Sans MS', monospace;
+		font-family: 'Ubuntu', monospace;
 	}
 	::marker {
 		content: '';
@@ -41,6 +41,6 @@
 		padding-left: unset;
 	}
 	li {
-		margin-top: 5px;
+		list-style-type: none;
 	}
 </style>
