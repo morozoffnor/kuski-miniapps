@@ -25,8 +25,9 @@
 		text-shadow: 2px 2px #1917175a;
 	}
 	a {
-		color: black;
+		color: whitesmoke;
 		text-decoration: none;
+		text-shadow: 2px 2px #1917175a;
 	}
 	a:visited {
 		color: whitesmoke;
