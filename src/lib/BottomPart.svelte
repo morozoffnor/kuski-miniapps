@@ -19,16 +19,16 @@
 
 <style>
 	p {
-		color: dimgrey;
+		color: black;
 		text-align: center;
 		position: relative;
 	}
 	a {
-		color: dimgrey;
+		color: black;
 		text-decoration: none;
 	}
 	a:visited {
-		color: dimgrey;
+		color: black;
 		text-decoration: none;
 	}
 

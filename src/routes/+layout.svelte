@@ -13,6 +13,6 @@
 
 <style>
 	:global(body) {
-		background-color: black;
+		background-image: url('/background.jpg');
 	}
 </style>

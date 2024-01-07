@@ -52,6 +52,7 @@
 	p.username {
 		text-align: center;
 		font-family: 'Ubuntu';
+        text-shadow: 2px 2px #1917175a;
 	}
 
 	table {
@@ -82,7 +83,7 @@
 		width: 330px;
 		border: 1px solid rgba(255, 255, 255, 0.25);
 		border-radius: 20px;
-		background-color: rgba(255, 255, 255, 0.15);
+		background-color: rgba(11, 11, 11, 0.462);
 		box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
 
 		backdrop-filter: blur(15px);

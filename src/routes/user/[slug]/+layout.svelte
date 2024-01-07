@@ -32,6 +32,7 @@
 		color: whitesmoke;
 		text-align: center;
 		font-family: 'Ubuntu', monospace;
+        text-shadow: 2px 2px #1917175a;
 	}
 	::marker {
 		content: '';
