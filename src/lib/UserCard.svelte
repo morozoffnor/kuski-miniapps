@@ -17,7 +17,7 @@
 
 <div>
 	<h2><a href="/user/{id}">{name}</a></h2>
-	<p>Lowest today: {lowest}, lowest ever: {lowest}</p>
+	<p>Lowest ever: {lowest}</p>
 </div>
 
 <style>
@@ -41,7 +41,7 @@
 		display: table;
 		/* outline-style: dotted; */
 		outline-color: whitesmoke;
-		width: 300px;
+		width: calc(100% - 40vw);
 		border: 1px solid rgba(255, 255, 255, 0.25);
 		border-radius: 20px;
 		background-color: rgba(255, 255, 255, 0.15);
