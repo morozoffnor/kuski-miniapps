@@ -28,7 +28,7 @@
 	p {
 		line-height: 0.01;
 		margin-left: 20px;
-		color: grey;
+		color: whitesmoke;
 		font-family: 'Ubuntu';
 		font-size: small;
 	}
@@ -41,7 +41,7 @@
 		display: table;
 		/* outline-style: dotted; */
 		outline-color: whitesmoke;
-		width: calc(100% - 40vw);
+		width: calc(100% - 35vw);
 		border: 1px solid rgba(255, 255, 255, 0.25);
 		border-radius: 20px;
 		background-color: rgba(11, 11, 11, 0.462);
