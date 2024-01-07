@@ -1,4 +1,5 @@
 <script>
+    // The line below is needed to make the typescript compiler happy
 // @ts-nocheck
 
 
