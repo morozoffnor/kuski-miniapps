@@ -19,17 +19,19 @@
 
 <style>
 	p {
-		color: black;
+		color: whitesmoke;
 		text-align: center;
 		position: relative;
+		text-shadow: 2px 2px #1917175a;
 	}
 	a {
 		color: black;
 		text-decoration: none;
 	}
 	a:visited {
-		color: black;
+		color: whitesmoke;
 		text-decoration: none;
+		text-shadow: 2px 2px #1917175a;
 	}
 
 	a:hover {
