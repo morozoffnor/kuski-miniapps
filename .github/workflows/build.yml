@@ -1,0 +1,27 @@
+name: Build image
+
+on:
+  push:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - 'release/**'
+      - 'develop'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.0.0
+      - name: Create multi-platform image
+        run: |
+          docker buildx create \
+            --name multiplatform \
+            --driver docker-container \
+            --use
+      - name: Build
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 .
