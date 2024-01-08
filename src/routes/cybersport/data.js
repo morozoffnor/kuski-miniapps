@@ -16,7 +16,7 @@
 
 /**
  * Retrieves user data.
- * @returns {Object} The user data object.
+ * @returns {UserData} The user data object.
  * @property {string} auth_date - The authentication date.
  * @property {string} chat_instance - The chat instance.
  * @property {string} chat_type - The type of chat.

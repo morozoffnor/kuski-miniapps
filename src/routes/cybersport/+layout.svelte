@@ -3,11 +3,22 @@
 	export let data;
 	import { onMount } from 'svelte';
 	import {getUserData} from './data.js'
+	import Menu from '$lib/game/ui/Menu.svelte';
+
+	/** @type {userData} */
+	let userdata;
+
+	if (data.env.ENV == "dev") {
+		userdata = getUserData()
+	} else {
+		let app = window.Telegram.WebApp;
+		userdata = app.initData;
+	}
 	
 
 	onMount(() => {
 		window.Telegram.WebApp.ready();
-		const app = window.Telegram.WebApp;
+		let app = window.Telegram.WebApp;
 
 		// $: {
 		// console.log(data);
@@ -18,16 +29,16 @@
 		// })
 		// }
 		
-		// let test = sendInitData(data);
+		let test = sendInitData(data);
 		
 
-		// async function sendInitData(data) {
-		// 	const tgData = await fetch(
-		// 	`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/api/telegram`+"/validate-init",
-		// 	{ method: "POST", body: app.initData, headers: { "x-api-token": data.env.BOTAPI_TOKEN } },
-		// 	).then(res => res.json());
-		// 	return tgData;
-		// }		
+		async function sendInitData(data) {
+			const tgData = await fetch(
+			`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/api/telegram`+"/validate-init",
+			{ method: "POST", body: app.initData, headers: { "x-api-token": data.env.BOTAPI_TOKEN } },
+			).then(res => res.json());
+			return tgData;
+		}		
 	});
 	/**
  * @typedef {Object} userData
@@ -44,13 +55,12 @@
  * @property {string} user.last_name - The last name of the user.
  * @property {string} user.username - The username of the user.
  */
-	let userData = getUserData() // = app.initData;
+	/** @type {userData} */
+	 // = app.initData;
 </script>
 
 <p>
-	{JSON.stringify(userData.user)}
-
-
+<Menu user={userdata.user}/>
 
 
 	
@@ -75,6 +85,10 @@
 		width: 100%;
 		text-wrap: wrap;
 		color: white;
+	}
+	:global(p) {
+		color: white;
+		font-family: 'Ubuntu', monospace;
 	}
 
 </style>

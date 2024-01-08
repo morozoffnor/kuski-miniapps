@@ -14,7 +14,5 @@
 {/if}
 
 <style>
-	:global(body) {
-		background-image: url('/background.jpg');
-	}
+
 </style>
