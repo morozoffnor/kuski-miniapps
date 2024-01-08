@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import BottomPart from '$lib/BottomPart.svelte';
 </script>
 
@@ -8,8 +9,9 @@
 
 
 <slot />
-
-<BottomPart />
+{#if $page.url.pathname == "/user" || $page.url.pathname == "/user/" + $page.params.slug}
+	<BottomPart />
+{/if}
 
 <style>
 	:global(body) {
