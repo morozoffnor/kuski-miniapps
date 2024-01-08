@@ -3,23 +3,19 @@
 	export let data;
 	import { onMount } from 'svelte';
 	import {getUserData} from './data.js'
+	import {userData} from './stores.js'
 	import Menu from '$lib/game/ui/Menu.svelte';
 
 	/** @type {userData} */
-	let userdata;
 
 	if (data.env.ENV == "dev") {
-		userdata = getUserData()
-	} else {
-		let app = window.Telegram.WebApp;
-		userdata = app.initData;
+		$userData = getUserData()
 	}
-	
 
 	onMount(() => {
 		window.Telegram.WebApp.ready();
 		let app = window.Telegram.WebApp;
-
+		$userData = app.initDataUnsafe;
 		// $: {
 		// console.log(data);
 		// console.log(app.initData)
@@ -29,16 +25,16 @@
 		// })
 		// }
 		
-		let test = sendInitData(data);
+		// let test = sendInitData(data);
 		
 
-		async function sendInitData(data) {
-			const tgData = await fetch(
-			`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/api/telegram`+"/validate-init",
-			{ method: "POST", body: app.initData, headers: { "x-api-token": data.env.BOTAPI_TOKEN } },
-			).then(res => res.json());
-			return tgData;
-		}		
+		// async function sendInitData(data) {
+		// 	const tgData = await fetch(
+		// 	`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/api/telegram`+"/validate-init",
+		// 	{ method: "POST", body: app.initData, headers: { "x-api-token": data.env.BOTAPI_TOKEN } },
+		// 	).then(res => res.json());
+		// 	return tgData;
+		// }		
 	});
 	/**
  * @typedef {Object} userData
@@ -60,7 +56,7 @@
 </script>
 
 <p>
-<Menu user={userdata.user}/>
+<Menu user={$userData.user}/>
 
 
 	
