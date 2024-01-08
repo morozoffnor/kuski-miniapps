@@ -13,7 +13,7 @@
 		console.log(app.initData)
 		console.log({
 			str: "initDataUnsafe",
-			initData: app.initDataUnsafe,
+			initData: app.initData,
 		})
 		}
 		
