@@ -1,21 +1,42 @@
 <script>
 // @ts-nocheck
 	export let data;
+	export const ssr = false
 	import { onMount } from 'svelte';
 	import {getUserData} from './data.js'
 	import {userData} from './stores.js'
 	import Menu from '$lib/game/ui/Menu.svelte';
+	// import {Telegram} from '/scripts/telegram.js?url'
+	import { browser } from '$app/environment'
 
 	/** @type {userData} */
 
-	if (data.env.ENV == "dev") {
+	if (data.env.ENV == "test") {
 		$userData = getUserData()
 	}
 
+	$: testvar = initDataUnsafe
+	console.log(`test var = ${testvar}`)
+
+	let initDataUnsafe; 
+	if (browser) {
+		testvar2 = 3
+		initDataUnsafe = window.Telegram.WebApp.initDataUnsafe
+	}
+
+	let testvar2 = 1
+
+
 	onMount(() => {
-		window.Telegram.WebApp.ready();
-		let app = window.Telegram.WebApp;
-		$userData = app.initDataUnsafe;
+		
+
+		testar = 1
+		testvar = testvar
+		console.log(`test var = ${testvar}`)
+
+		function change(i) {
+			return i++
+		}
 		// $: {
 		// console.log(data);
 		// console.log(app.initData)
@@ -59,8 +80,10 @@
 	Loading...
 {:then $userData} 
 	<Menu user={$userData.user}/>
+	<p>{testvar}</p>
 {/await}
-
+ {@debug testvar}
+ {@debug initDataUnsafe}
 
 <svelte:head>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
