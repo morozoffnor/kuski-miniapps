@@ -55,13 +55,12 @@
 	 // = app.initData;
 </script>
 
-<p>
-<Menu user={$userData.user}/>
+{#await $userData}
+	Loading...
+{:then $userData} 
+	<Menu user={$userData.user}/>
+{/await}
 
-
-	
-	
-</p>
 
 <svelte:head>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
