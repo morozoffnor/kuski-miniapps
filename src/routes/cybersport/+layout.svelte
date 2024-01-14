@@ -2,7 +2,7 @@
 // @ts-nocheck
 	export let data;
 	export const ssr = false
-	import { onMount } from 'svelte';
+	import { onMount} from 'svelte';
 	import {getUserData} from './data.js'
 	import {userData} from './stores.js'
 	import Menu from '$lib/game/ui/Menu.svelte';
@@ -15,48 +15,16 @@
 		$userData = getUserData()
 	}
 
-	$: testvar = initDataUnsafe
-	console.log(`test var = ${testvar}`)
+	let user = {}
+	let userFetched = false
 
-	let initDataUnsafe; 
-	if (browser) {
-		testvar2 = 3
-		initDataUnsafe = window.Telegram.WebApp.initDataUnsafe
-	}
-
-	let testvar2 = 1
-
-
-	onMount(() => {
-		
-
-		testar = 1
-		testvar = testvar
-		console.log(`test var = ${testvar}`)
-
-		function change(i) {
-			return i++
-		}
-		// $: {
-		// console.log(data);
-		// console.log(app.initData)
-		// console.log({
-		// 	str: "initDataUnsafe",
-		// 	initData: app.initData,
-		// })
-		// }
-		
-		// let test = sendInitData(data);
-		
-
-		// async function sendInitData(data) {
-		// 	const tgData = await fetch(
-		// 	`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/api/telegram`+"/validate-init",
-		// 	{ method: "POST", body: app.initData, headers: { "x-api-token": data.env.BOTAPI_TOKEN } },
-		// 	).then(res => res.json());
-		// 	return tgData;
-		// }		
-	});
+	onMount(async () => {
+  		const obj = await window.Telegram.WebApp.initDataUnsafe;
+  		user = obj
+		console.log(obj)
+		userFetched = true
+  // Good to go!
+	})
 	/**
  * @typedef {Object} userData
  * @property {string} auth_date - The authentication date.
@@ -76,14 +44,9 @@
 	 // = app.initData;
 </script>
 
-{#await $userData}
-	Loading...
-{:then $userData} 
-	<Menu user={$userData.user}/>
-	<p>{testvar}</p>
-{/await}
- {@debug testvar}
- {@debug initDataUnsafe}
+{#if userFetched}
+	{@debug user}
+{/if}
 
 <svelte:head>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
