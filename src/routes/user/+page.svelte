@@ -1,9 +1,30 @@
 <script>
+	import { tgUserData } from './stores.js';
 	export let data;
 	import UserCard from '$lib/UserCard.svelte';
+	import { onMount } from 'svelte';
+
+	let user = {};
+	let userFetched = false;
+	let openedFromTelegram = null
+
+	onMount(async () => {
+		const obj = await window.Telegram.WebApp.initDataUnsafe;
+		if (obj.user) {
+			user = obj;
+			$tgUserData = obj
+			console.log(obj);
+			userFetched = true;
+			openedFromTelegram = true;
+			console.log($tgUserData)
+		}
+	});
+
 </script>
 
-<h1>Users:</h1>
+
+
+<h1>Stats:</h1>
 
 <ul>
 	{#await data}
@@ -34,8 +55,16 @@
 	::marker {
 		content: '';
 	}
+	:global(html) {
+		background-color: #191717;
+	}
 	:global(body) {
-		background-image: url('/background.jpg');
+		background-color: #191717;
+		background-image: unset;
 	}
 	
 </style>
+
+<svelte:head>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</svelte:head>

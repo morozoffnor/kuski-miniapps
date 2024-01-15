@@ -1,51 +1,50 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 	export let data;
-	export const ssr = false
-	import { onMount} from 'svelte';
-	import {getUserData} from './data.js'
-	import {userData} from './stores.js'
+	import { onMount } from 'svelte';
+	import { getUserData } from './data.js';
 	import Menu from '$lib/game/ui/Menu.svelte';
-	// import {Telegram} from '/scripts/telegram.js?url'
-	import { browser } from '$app/environment'
+	import { browser } from '$app/environment';
+	import { userData } from './stores.js';
 
-	/** @type {userData} */
-
-	if (data.env.ENV == "test") {
-		$userData = getUserData()
+	if (data.env.ENV == 'dev') {
+		$userData = getUserData();
 	}
 
-	let user = {}
-	let userFetched = false
+	let user = {};
+	let userFetched = false;
 
 	onMount(async () => {
-  		const obj = await window.Telegram.WebApp.initDataUnsafe;
-  		user = obj
-		console.log(obj)
-		userFetched = true
-  // Good to go!
-	})
+		const obj = await window.Telegram.WebApp.initDataUnsafe;
+		user = obj;
+		$userData = obj
+		console.log(obj);
+		userFetched = true;
+	});
 	/**
- * @typedef {Object} userData
- * @property {string} auth_date - The authentication date.
- * @property {string} chat_instance - The chat instance.
- * @property {string} chat_type - The type of chat.
- * @property {string} hash - The hash.
- * @property {Object} user - The user object.
- * @property {boolean} user.allows_write_to_pm - If the user allows writing to private messages.
- * @property {string} user.first_name - The first name of the user.
- * @property {number} user.id - The ID of the user.
- * @property {boolean} user.is_premium - If the user is premium.
- * @property {string} user.language_code - The language code of the user.
- * @property {string} user.last_name - The last name of the user.
- * @property {string} user.username - The username of the user.
- */
-	/** @type {userData} */
-	 // = app.initData;
+	 * @typedef {Object} userData
+	 * @property {string} auth_date - The authentication date.
+	 * @property {string} chat_instance - The chat instance.
+	 * @property {string} chat_type - The type of chat.
+	 * @property {string} hash - The hash.
+	 * @property {Object} user - The user object.
+	 * @property {boolean} user.allows_write_to_pm - If the user allows writing to private messages.
+	 * @property {string} user.first_name - The first name of the user.
+	 * @property {number} user.id - The ID of the user.
+	 * @property {boolean} user.is_premium - If the user is premium.
+	 * @property {string} user.language_code - The language code of the user.
+	 * @property {string} user.last_name - The last name of the user.
+	 * @property {string} user.username - The username of the user.
+	 */
 </script>
 
 {#if userFetched}
-	{@debug user}
+	// {console.log(user)}
+	{console.log($userData)}
+
+	<Menu user={$userData.user} />
+
+
 {/if}
 
 <svelte:head>
@@ -60,7 +59,7 @@
 	}
 	:global(body) {
 		background-color: #191717;
-		background-image: unset
+		background-image: unset;
 	}
 	p {
 		width: 100%;
@@ -71,5 +70,4 @@
 		color: white;
 		font-family: 'Ubuntu', monospace;
 	}
-
 </style>

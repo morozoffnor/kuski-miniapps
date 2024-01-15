@@ -1,5 +1,6 @@
 import {config} from '$lib/server/config.js';
 import {getUserData} from './data.js';
+export const ssr = false
 
 export async function load() {
     let user = await getUserData();
