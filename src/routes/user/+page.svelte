@@ -36,15 +36,16 @@
 			// console.log(obj);
 			
 			openedFromTelegram = true;
-			// console.log($tgUserData)
+			console.log($tgUserData)
 			// @ts-ignore
-			// $botUser = await getUserSv(user.user.id)
+			$botUser = await res.json()
+			console.log($botUser)
 			userFetched = true;
 		}
 		if (data.env.ENV === 'dev') {
 			$tgUserData = getUserData()
 			
-			// console.log($tgUserData)
+			console.log($tgUserData)
 			// console.log($tgUserData.user.id)
 			
 			// $botUser = await fetch(`${config.BOTAPI_HOST}:${config.BOTAPI_PORT}/user/${$tgUserData.user.id}`)
