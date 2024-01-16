@@ -17,3 +17,4 @@ import { writable } from 'svelte/store';
 */
 
 export const tgUserData = writable({});
+export const botUser = writable({});

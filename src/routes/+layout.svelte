@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import BottomPart from '$lib/BottomPart.svelte';
+	import { SvelteUIProvider } from '@svelteuidev/core';
 </script>
 
 <svelte:head>
@@ -8,7 +9,9 @@
 </svelte:head>
 
 
-<slot />
+<SvelteUIProvider withGlobalStyles themeObserver={'dark'}>
+	<slot />
+</SvelteUIProvider>
 {#if $page.url.pathname == "/user" || $page.url.pathname == "/user/" + $page.params.slug}
 	<BottomPart />
 {/if}

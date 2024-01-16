@@ -1,5 +1,6 @@
 import { getAllUsers } from '$lib/server/users.js';
 import { error } from '@sveltejs/kit';
+import { config } from '$lib/server/config.js';
 
 /**
  * @typedef {Object} Stats
@@ -37,6 +38,8 @@ import { error } from '@sveltejs/kit';
  * @typedef {User[]} Users - An array of user objects.
  */
 
+
+
 export async function load() {
 	const users = await getAllUsers();
 
@@ -51,7 +54,13 @@ export async function load() {
 				name: user.userName,
 				lowest: user.cockStats.lowestSize
 			})
-		)
+		),
+		env: {
+			BOTAPI_HOST: config.BOTAPI_HOST,
+            BOTAPI_PORT: config.BOTAPI_PORT,
+            BOTAPI_TOKEN: config.BOTAPI_TOKEN,
+			ENV: config.ENV
+		}
 	};
 }
 
