@@ -3,5 +3,20 @@
 </script>
 
 <Paper withBorder>
-    Paper is the most basic UI component. Use it to create cards, dropdowns, modals and other components that require background with shadow
+    тут статы короче всякие типа
+    <ul>
+        <li>
+            плюс к маме
+        </li>
+        <li>
+            минус на минус
+        </li>
+        <li>
+            где я
+        </li>
+        <li>
+            ну и длинный текст для теста типа вот например почему мы все каждое утро встаём и заставляем себя делать вещи которые нам не нравятся
+        </li>
+    </ul>
+    ну и ещё текст на тему хорошего настроения у меня вот в целом нормальное хоть я и подустал за сегодня
 </Paper>
