@@ -28,6 +28,8 @@
 	}
 
 	onMount(async () => {
+		let telegram = await window.Telegram.WebApp
+		telegram.expand()
 		// @ts-ignore
 		const obj = await window.Telegram.WebApp.initDataUnsafe;
 		if (obj.user) {
