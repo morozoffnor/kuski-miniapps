@@ -103,6 +103,7 @@ title={$botUser.selectedItem.name}
 overlayColor={theme.colorScheme === 'dark' ? 'black' : 'black'}
 overlayOpacity={0.55}
 overlayBlur={3}
+target={document.body}
 >
 <!-- Modal Content -->
 <ItemModalUI item={$botUser.selectedItem} />
@@ -126,7 +127,6 @@ overlayBlur={3}
 </SimpleGrid>
 {:else}
 <Flex justify="space-around"><p>You have no items :(</p></Flex>
-
 {/if}
 
 
