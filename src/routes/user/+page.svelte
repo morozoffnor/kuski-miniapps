@@ -62,7 +62,6 @@
 			userFetched = true;
 		}
 
-		// console.log(data.item)
 		
 
 		
