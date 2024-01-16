@@ -9,8 +9,9 @@
 </svelte:head>
 
 
-
+<SvelteUIProvider withGlobalStyles themeObserver={'dark'}>
 <slot />
+</SvelteUIProvider>
 {#if $page.url.pathname == "/user" || $page.url.pathname == "/user/" + $page.params.slug}
 	<BottomPart />
 {/if}

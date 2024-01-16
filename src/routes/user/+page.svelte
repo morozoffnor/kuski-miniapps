@@ -38,6 +38,14 @@
 			openedFromTelegram = true;
 			console.log($tgUserData)
 			// @ts-ignore
+
+			let res = await fetch(`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUserData.user.id}`, {
+				
+				headers: {
+					'x-api-token': `${data.env.BOTAPI_TOKEN}`
+				}
+			})
+
 			$botUser = await res.json()
 			console.log($botUser)
 			userFetched = true;
@@ -104,7 +112,6 @@ title={$botUser.selectedItem.name}
 overlayColor={theme.colorScheme === 'dark' ? 'black' : 'black'}
 overlayOpacity={0.55}
 overlayBlur={3}
-target={document.body}
 >
 <!-- Modal Content -->
 <ItemModalUI item={$botUser.selectedItem} />
