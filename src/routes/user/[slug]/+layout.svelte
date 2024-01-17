@@ -2,7 +2,10 @@
 	export let data;
 	import { page } from '$app/stores';
 	import UserCard from '$lib/UserCard.svelte';
+	import { Button } from '@svelteuidev/core';
 </script>
+
+<Button variant="default" color="gray" href="./">Go back</Button>
 
 <div class="layout">
 	<main>

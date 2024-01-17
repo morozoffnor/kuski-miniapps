@@ -17,14 +17,14 @@ function useClicked(name) {
 
 import { createEventDispatcher } from 'svelte';
 
-const dispatch = createEventDispatcher();    
+const dispatch = createEventDispatcher();
 
 </script>
 
 
 <div>
     <Flex justify="center">
-        <img src="items/1.png" alt="random image" />
+        <img src="items/1.png" alt="item" on:click={useClicked(itemName)} />
     </Flex>
     <Button on:click={useClicked(itemName)} variant='gradient' gradient={{from: 'teal', to: 'blue', deg: 60}} ripple>
         {itemName}

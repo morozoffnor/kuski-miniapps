@@ -36,6 +36,7 @@
 		"@svelteuidev/prism": "^0.15.4",
 		"dayjs": "^1.11.10",
 		"express": "^4.18.2",
+		"radix-icons-svelte": "^1.2.1",
 		"telegram-web-app": "^0.0.0"
 	}
 }

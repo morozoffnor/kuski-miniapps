@@ -1,21 +1,23 @@
 <script>
+// @ts-nocheck
+
 	import ItemModalUI from './../../lib/items/ItemModalUI.svelte';
 	import ItemCard from './../../lib/items/ItemCard.svelte';
-	import { tgUserData, botUser } from './stores.js';
+	import { tgUserData, botUser, modalButtonState } from './stores.js';
 	// @ts-ignore
 	export let data;
 	import UserCard from '$lib/UserCard.svelte';
-	import {getUserData} from '../cybersport/data.js'
+	import { getUserData } from '../cybersport/data.js';
 	import { onMount } from 'svelte';
-	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid } from '@svelteuidev/core';
+	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Overlay, Notification } from '@svelteuidev/core';
+	import { Check, Cross2 } from 'radix-icons-svelte';
 	// import { config} from '$lib/server/config.js'
-	
 
 	// @ts-ignore
 	let user = {};
 	let userFetched = false;
 	// @ts-ignore
-	let openedFromTelegram = null
+	let openedFromTelegram = null;
 	const theme = useSvelteUITheme();
 	/**
 	 * @param {Number} id
@@ -28,117 +30,148 @@
 	}
 
 	onMount(async () => {
-		let telegram = await window.Telegram.WebApp
-		telegram.expand()
+		let telegram = await window.Telegram.WebApp;
+		telegram.expand();
 		// @ts-ignore
 		const obj = await window.Telegram.WebApp.initDataUnsafe;
 		if (obj.user) {
 			user = obj;
-			$tgUserData = obj
+			$tgUserData = obj;
 			// console.log(obj);
-			
+
 			openedFromTelegram = true;
-			console.log($tgUserData)
+			console.log($tgUserData);
 			// @ts-ignore
 
-			let res = await fetch(`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUserData.user.id}`, {
-				
-				headers: {
-					'x-api-token': `${data.env.BOTAPI_TOKEN}`
+			let res = await fetch(
+				`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUserData.user.id}`,
+				{
+					headers: {
+						'x-api-token': `${data.env.BOTAPI_TOKEN}`
+					}
 				}
-			})
+			);
 
-			$botUser = await res.json()
-			console.log($botUser)
+			$botUser = await res.json();
+			console.log($botUser);
 			userFetched = true;
+			$modalButtonState = 'none';
 		}
 		if (data.env.ENV === 'dev') {
-			$tgUserData = getUserData()
-			
-			console.log($tgUserData)
-			// console.log($tgUserData.user.id)
-			
-			// $botUser = await fetch(`${config.BOTAPI_HOST}:${config.BOTAPI_PORT}/user/${$tgUserData.user.id}`)
-			
-			// @ts-ignore
-			let res = await fetch(`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUserData.user.id}`, {
-				
-				headers: {
-					'x-api-token': `${data.env.BOTAPI_TOKEN}`
+			$tgUserData = getUserData();
+
+			console.log($tgUserData);
+
+			let res = await fetch(
+				`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUserData.user.id}`,
+				{
+					headers: {
+						'x-api-token': `${data.env.BOTAPI_TOKEN}`
+					}
 				}
-			})
+			);
 
-			$botUser = await res.json()
-			console.log($botUser)
+			$botUser = await res.json();
+			console.log($botUser);
 			userFetched = true;
+			$modalButtonState = 'none';
 		}
-
-		
-
-		
 	});
 
 	// @ts-ignore
 	function handleMessage(event) {
-		// alert(event.detail.text);
-		presentItemModal(event.detail.text)
+		if (event.detail.type === 'useItem') {
+			console.log('using item ' + event.detail.text)
+			modalButtonState.set('loading');
+			setTimeout(() => {
+				modalButtonState.set('none');
+				opened = false;
+				let itemObj = $botUser.items.find((item) => item.name === event.detail.text);
+				for (var i =0; i < $botUser.items.length; i++) {
+					if ($botUser.items[i].name === event.detail.text) {
+						$botUser.items.splice(i, 1);
+						showNotification();
+						$botUser = $botUser;
+						break;
+					}
+				}
+			}, 1000);
+			return;
+		}
+		
+		if (event.detail.text === 'closeModal') {
+			opened = false;
+		} else {
+			presentItemModal(event.detail.text);
+		}
+	}
+	let notificationShown = false;
+	function showNotification() {
+		notificationShown = true;
+		setTimeout(() => {
+			notificationShown = false;
+		}, 3000);
 	}
 	// @ts-ignore
-	let modalPresented = false
 
 	// @ts-ignore
 	function presentItemModal(itemName) {
-		let itemObj = $botUser.items.find(item => item.name === itemName);
+		let itemObj = $botUser.items.find((item) => item.name === itemName);
 
-		// find item by name in $botUser.items[]
-		
 		// @ts-ignore
-		$botUser.selectedItem = itemObj
+		$botUser.selectedItem = itemObj;
 		// @ts-ignore
-		console.log($botUser.selectedItem)
+		console.log($botUser.selectedItem);
 
-		opened = true
+		opened = true;
 	}
-	let opened = false
+	let opened = false;
 
 	function closeModal() {
-		opened = false
+		opened = false;
 	}
+
 </script>
 
+{#if notificationShown}
+	<Notification class="nc" icon={Check} color='teal'>
+		The item is used, it will effect you next size (no)
+	</Notification>
+{/if}
+
 {#if $botUser.selectedItem}
-<Modal 
-{opened} 
-on:close={closeModal} 
-title={$botUser.selectedItem.name}
-overlayColor={theme.colorScheme === 'dark' ? 'black' : 'black'}
-overlayOpacity={0.55}
-overlayBlur={3}
->
-<!-- Modal Content -->
-<ItemModalUI item={$botUser.selectedItem} />
-</Modal>
+	<Modal
+		{opened}
+		on:close={closeModal}
+		title={$botUser.selectedItem.name}
+		overlayColor={theme.colorScheme === 'dark' ? 'black' : 'black'}
+		overlayOpacity={0.55}
+		overlayBlur={3}
+		on:message={handleMessage}
+	>
+		<!-- Modal Content -->
+		<ItemModalUI item={$botUser.selectedItem} on:message={handleMessage}/>
+	</Modal>
 {/if}
 <h1>Inventory</h1>
 {#if userFetched && $botUser.items.length > 0}
-<SimpleGrid breakpoints={[
-	{ maxWidth: 100, cols: 3, spacing: 'xs', minWidth: 100 },
-	{ maxWidth: 100, cols: 2, spacing: 'xs', minWidth: 100 },
-	{ maxWidth: 100, cols: 1, spacing: 'xs', minWidth: 100 }
-	]}
-	cols={3}
->
-{#if $botUser.items.length > 0}
-	{#each $botUser.items as item}
-		<ItemCard itemName={item.name} on:message={handleMessage}/>
-	{/each}
-{/if}
-
-</SimpleGrid>
+	<SimpleGrid
+		breakpoints={[
+			{ maxWidth: 100, cols: 3, spacing: 'xs', minWidth: 100 },
+			{ maxWidth: 100, cols: 2, spacing: 'xs', minWidth: 100 },
+			{ maxWidth: 100, cols: 1, spacing: 'xs', minWidth: 100 }
+		]}
+		cols={3}
+	>
+		{#if $botUser.items.length > 0}
+			{#each $botUser.items as item}
+				<ItemCard itemName={item.name} on:message={handleMessage} />
+			{/each}
+		{/if}
+	</SimpleGrid>
 {:else}
-<Flex justify="space-around"><p>You have no items :(</p></Flex>
+	<Flex justify="space-around"><p>You have no items :(</p></Flex>
 {/if}
-
 
 <h1>Stats:</h1>
 
@@ -152,6 +185,10 @@ overlayBlur={3}
 	{/await}
 </ul>
 
+<svelte:head>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</svelte:head>
+
 <style>
 	li {
 		list-style-type: none;
@@ -161,7 +198,7 @@ overlayBlur={3}
 		color: whitesmoke;
 		font-family: 'Ubuntu', monospace;
 		text-align: center;
-        text-shadow: 2px 2px #1917175a;
+		text-shadow: 2px 2px #1917175a;
 	}
 
 	ul {
@@ -171,10 +208,8 @@ overlayBlur={3}
 	::marker {
 		content: '';
 	}
-
-	
+	::global(.nc) {
+		position: absolute;
+		z-index: 9999;
+	}
 </style>
-
-<svelte:head>
-	<script src="https://telegram.org/js/telegram-web-app.js"></script>
-</svelte:head>

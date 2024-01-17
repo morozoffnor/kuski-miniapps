@@ -1,5 +1,5 @@
 <script>
-    import { Button, Flex, Paper } from '@svelteuidev/core';
+    import { Button, Flex, Paper, Text } from '@svelteuidev/core';
 </script>
 
 <Paper withBorder>
