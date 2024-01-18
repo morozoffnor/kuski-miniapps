@@ -1,48 +1,41 @@
 <script>
+// @ts-nocheck
+
+	import ItemRarityText from './ItemRarityText.svelte';
 	import { modalButtonState } from './../../routes/user/stores.js';
 	import MathItemType from './types/MathItemType.svelte';
-    import { Button, Flex, Text } from '@svelteuidev/core';
+    import { Button, Flex, Group, SimpleGrid } from '@svelteuidev/core';
     export let item;
     import { createEventDispatcher } from 'svelte';
 
     const dispatch = createEventDispatcher();
 
-    function useClicked(name) {
-        console.log('use ' + name)
+    function useClicked(id) {
+        console.log('use ' + id)
         dispatch('message', {
-            text: name
+            text: id
         })
     }
 
-    function useItem(name) {
-        console.log('use ' + name)
+    function useItem(id) {
+        console.log('use ' + id)
         dispatch('message', {
-            text: name,
+            text: id,
             type: 'useItem'
         })
     
     }
 
 </script>
-
-<Text
-        component='span'
-        align='center'
-        variant='gradient'
-        size='xl'
-        weight='bold'
-        gradient={{ from: 'red', to: 'yellow', deg: 75 }} 
-    >
-        Предметы можно тыкать, они пока ни на что не влияют 
-        <br>
-        (после обновления страницы всё вернётся)
-    </Text>
+<Group position='center'><ItemRarityText rarity={item.rarity} /></Group>
 <p>
     {item.description}
 </p>
 
+
+
 {#if item.type === 'math'}
-    <MathItemType />
+    <MathItemType item={item}/>
 {:else}
     нихуя
 {/if}
@@ -52,7 +45,7 @@
 	{#if $modalButtonState === 'none'}
         <Button 
             on:click={() => {
-                useItem(item.name)
+                useItem(item._id)
             }}
             variant='gradient' gradient={{from: 'red', to: 'orange', deg: 60}} ripple
         >

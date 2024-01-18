@@ -1,22 +1,33 @@
 <script>
-    import { Button, Flex, Paper, Text } from '@svelteuidev/core';
+// @ts-nocheck
+
+    import { Button, Flex, Paper, Text, Alert } from '@svelteuidev/core';
+    import { InfoCircled } from 'radix-icons-svelte';
+
+    export let item
 </script>
 
 <Paper withBorder>
-    тут статы короче всякие типа
+    {#if item.effect.title != '' || item.effect.title != undefined}
+        {item.effect.title}
+    {/if}
     <ul>
-        <li>
-            плюс к маме
-        </li>
-        <li>
-            минус на минус
-        </li>
-        <li>
-            где я
-        </li>
-        <li>
-            ну и длинный текст для теста типа вот например почему мы все каждое утро встаём и заставляем себя делать вещи которые нам не нравятся
-        </li>
+        {#each item.effect.descriptions as description}
+            <li>{description}</li>
+        {/each}
     </ul>
-    ну и ещё текст на тему хорошего настроения у меня вот в целом нормальное хоть я и подустал за сегодня
+    {#if item.effect.alert != '' || item.effect.alert != undefined}
+        <Alert icon={InfoCircled}  title="Внимание!" color="red" variant="outline" radius="md">
+            {item.effect.alert}
+        </Alert>
+    {/if}
+    
 </Paper>
+
+<style>
+    ul {
+        padding-left: 20;
+        margin-top: 0;
+        margin-bottom: 5;
+    }
+</style>

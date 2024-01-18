@@ -1,16 +1,18 @@
 <script>
+// @ts-nocheck
+
 import { Button, Flex } from '@svelteuidev/core';
 
 /**
- * @type {String} itemName
+ * @type {Object} itemName
  */
-export let itemName;
+export let itemObj;
 
 
-function useClicked(name) {
-    console.log('use' + name)
+function useClicked(id) {
+    console.log('use' + id)
     dispatch('message', {
-        text: name
+        text: id
     })
     
 }
@@ -24,10 +26,12 @@ const dispatch = createEventDispatcher();
 
 <div>
     <Flex justify="center">
-        <img src="items/1.png" alt="item" on:click={useClicked(itemName)} />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <img src={"/items/" + itemObj.icon } alt="item" on:click={useClicked(itemObj._id)} />
     </Flex>
-    <Button on:click={useClicked(itemName)} variant='gradient' gradient={{from: 'teal', to: 'blue', deg: 60}} ripple>
-        {itemName}
+    <Button on:click={useClicked(itemObj._id)} variant='gradient' gradient={{from: 'teal', to: 'blue', deg: 60}} ripple>
+        {itemObj.name}
     </Button>
 </div>
 

@@ -84,15 +84,19 @@
 			console.log('using item ' + event.detail.text)
 			modalButtonState.set('loading');
 			setTimeout(() => {
-				modalButtonState.set('none');
-				opened = false;
-				let itemObj = $botUser.items.find((item) => item.name === event.detail.text);
+				let itemObj = $botUser.items.find((item) => item._id == event.detail.text);
 				for (var i =0; i < $botUser.items.length; i++) {
-					if ($botUser.items[i].name === event.detail.text) {
+					if ($botUser.items[i]._id == event.detail.text) {
 						$botUser.items.splice(i, 1);
 						showNotification();
 						$botUser = $botUser;
+						modalButtonState.set('none');
+						opened = false;
 						break;
+					} else {
+						// show error notification
+						modalButtonState.set('none');
+						opened = false;
 					}
 				}
 			}, 1000);
@@ -115,8 +119,8 @@
 	// @ts-ignore
 
 	// @ts-ignore
-	function presentItemModal(itemName) {
-		let itemObj = $botUser.items.find((item) => item.name === itemName);
+	function presentItemModal(id) {
+		let itemObj = $botUser.items.find((item) => item._id === id);
 
 		// @ts-ignore
 		$botUser.selectedItem = itemObj;
@@ -156,16 +160,13 @@
 <h1>Inventory</h1>
 {#if userFetched && $botUser.items.length > 0}
 	<SimpleGrid
-		breakpoints={[
-			{ maxWidth: 100, cols: 3, spacing: 'xs', minWidth: 100 },
-			{ maxWidth: 100, cols: 2, spacing: 'xs', minWidth: 100 },
-			{ maxWidth: 100, cols: 1, spacing: 'xs', minWidth: 100 }
-		]}
+		
 		cols={3}
+		spacing={2}
 	>
 		{#if $botUser.items.length > 0}
-			{#each $botUser.items as item}
-				<ItemCard itemName={item.name} on:message={handleMessage} />
+			{#each $botUser.items as itemObj}
+				<ItemCard itemObj={itemObj} on:message={handleMessage} />
 			{/each}
 		{/if}
 	</SimpleGrid>
