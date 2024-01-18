@@ -3,7 +3,7 @@
 
 	import ItemModalUI from './../../lib/items/ItemModalUI.svelte';
 	import ItemCard from './../../lib/items/ItemCard.svelte';
-	import { tgUserData, botUser, modalButtonState } from './stores.js';
+	import { tgUserData, botUser, modalButtonState, statuses } from './stores.js';
 	// @ts-ignore
 	export let data;
 	import UserCard from '$lib/UserCard.svelte';
@@ -79,20 +79,42 @@
 	});
 
 	// @ts-ignore
-	function handleMessage(event) {
+	async function handleMessage(event) {
 		if (event.detail.type === 'useItem') {
 			console.log('using item ' + event.detail.text)
 			modalButtonState.set('loading');
-			setTimeout(() => {
+			setTimeout(async () => {
 				let itemObj = $botUser.items.find((item) => item._id == event.detail.text);
 				for (var i =0; i < $botUser.items.length; i++) {
 					if ($botUser.items[i]._id == event.detail.text) {
-						$botUser.items.splice(i, 1);
-						showNotification();
-						$botUser = $botUser;
-						modalButtonState.set('none');
-						opened = false;
-						break;
+						let reqData = {
+							userId: String($botUser.userid),
+							itemId: $botUser.items[i]._id
+						}
+						await fetch(
+							`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/items/use`,
+							{
+								method: "POST",
+								headers: {
+									'x-api-token': `${data.env.BOTAPI_TOKEN}`,
+									'Content-Type': "application/json"
+								},
+								body: JSON.stringify(reqData)
+							}
+						).then(res => {
+							if (res.status == 200) {
+								$botUser.items.splice(i, 1);
+								showNotification('success');
+								$botUser = $botUser;
+								modalButtonState.set('none');
+								opened = false;
+								return
+							}
+						}).catch(err => {
+							modalButtonState.set('none');
+							opened = false;
+							showNotification('fail');
+						})
 					} else {
 						// show error notification
 						modalButtonState.set('none');
@@ -110,10 +132,17 @@
 		}
 	}
 	let notificationShown = false;
-	function showNotification() {
-		notificationShown = true;
+	let failedNotificationShown = false;
+	function showNotification(state) {
+		if (state == 'fail') {
+			failedNotificationShown = true
+		}
+		if (state == 'success') {
+			notificationShown = true;
+		}
 		setTimeout(() => {
 			notificationShown = false;
+			failedNotificationShown = false;
 		}, 3000);
 	}
 	// @ts-ignore
@@ -140,6 +169,11 @@
 {#if notificationShown}
 	<Notification class="nc" icon={Check} color='teal'>
 		The item is used, it will effect you next size (no)
+	</Notification>
+{/if}
+{#if failedNotificationShown}
+	<Notification class="nc" icon={Cross2} color='red'>
+		An error occured while trying to use the item.
 	</Notification>
 {/if}
 

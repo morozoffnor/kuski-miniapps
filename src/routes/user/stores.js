@@ -19,3 +19,4 @@ import { writable } from 'svelte/store';
 export const tgUserData = writable({});
 export const botUser = writable({});
 export const modalButtonState = writable({});
+export const statuses = writable({});
