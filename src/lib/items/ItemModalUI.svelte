@@ -64,3 +64,9 @@
         Cancel
     </Button>
 </Flex>
+
+<style>
+    p {
+        font-family: 'Alegreya Sans', sans-serif;
+    }
+</style>

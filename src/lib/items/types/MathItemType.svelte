@@ -9,7 +9,9 @@
 
 <Paper withBorder>
     {#if item.effect.title != ''}
-        {item.effect.title}
+        <div>
+            {item.effect.title}
+        </div>
     {/if}
     <ul>
         {#each item.effect.descriptions as description}
@@ -29,5 +31,6 @@
         padding-left: 20;
         margin-top: 0;
         margin-bottom: 5;
+        font-family: 'Alegreya Sans', sans-serif;
     }
 </style>
