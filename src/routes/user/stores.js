@@ -20,3 +20,4 @@ export const tgUserData = writable({});
 export const botUser = writable({});
 export const modalButtonState = writable({});
 export const statuses = writable({});
+export const notification = writable({});

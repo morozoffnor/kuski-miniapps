@@ -8,7 +8,7 @@
 </script>
 
 <Paper withBorder>
-    {#if item.effect.title != '' || item.effect.title != undefined}
+    {#if item.effect.title != ''}
         {item.effect.title}
     {/if}
     <ul>
@@ -16,7 +16,7 @@
             <li>{description}</li>
         {/each}
     </ul>
-    {#if item.effect.alert != '' || item.effect.alert != undefined}
+    {#if item.effect.alert != ''}
         <Alert icon={InfoCircled}  title="Внимание!" color="red" variant="outline" radius="md">
             {item.effect.alert}
         </Alert>

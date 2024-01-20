@@ -1,9 +1,10 @@
 <script>
+
 // @ts-nocheck
 
 	import ItemModalUI from './../../lib/items/ItemModalUI.svelte';
 	import ItemCard from './../../lib/items/ItemCard.svelte';
-	import { tgUserData, botUser, modalButtonState, statuses } from './stores.js';
+	import { tgUserData, botUser, modalButtonState, notification } from './stores.js';
 	// @ts-ignore
 	export let data;
 	import UserCard from '$lib/UserCard.svelte';
@@ -134,16 +135,10 @@
 	let notificationShown = false;
 	let failedNotificationShown = false;
 	function showNotification(state) {
-		if (state == 'fail') {
-			failedNotificationShown = true
-		}
-		if (state == 'success') {
-			notificationShown = true;
-		}
+		$notification = state;
 		setTimeout(() => {
-			notificationShown = false;
-			failedNotificationShown = false;
-		}, 3000);
+			$notification = 'none';
+		}, 5000);
 	}
 	// @ts-ignore
 
@@ -164,18 +159,9 @@
 		opened = false;
 	}
 
+
 </script>
 
-{#if notificationShown}
-	<Notification class="nc" icon={Check} color='teal'>
-		The item is used, it will effect you next size (no)
-	</Notification>
-{/if}
-{#if failedNotificationShown}
-	<Notification class="nc" icon={Cross2} color='red'>
-		An error occured while trying to use the item.
-	</Notification>
-{/if}
 
 {#if $botUser.selectedItem}
 	<Modal
@@ -242,9 +228,5 @@
 
 	::marker {
 		content: '';
-	}
-	::global(.nc) {
-		position: absolute;
-		z-index: 9999;
 	}
 </style>
