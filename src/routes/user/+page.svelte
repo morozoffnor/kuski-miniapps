@@ -105,6 +105,7 @@
 						).then(res => {
 							if (res.status == 200) {
 								$botUser.items.splice(i, 1);
+								$botUser.activatedItem = itemObj;
 								showNotification('success');
 								$botUser = $botUser;
 								modalButtonState.set('none');
