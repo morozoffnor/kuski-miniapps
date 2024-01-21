@@ -10,8 +10,10 @@
 	import UserCard from '$lib/UserCard.svelte';
 	import { getUserData } from '../cybersport/data.js';
 	import { onMount } from 'svelte';
-	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Overlay, Notification } from '@svelteuidev/core';
+	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid, Paper } from '@svelteuidev/core';
 	import { Check, Cross2 } from 'radix-icons-svelte';
+	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
+	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
 	// import { config} from '$lib/server/config.js'
 
 	// @ts-ignore
@@ -195,36 +197,40 @@
 	<Flex justify="space-around"><p>You have no items :(</p></Flex>
 {/if}
 
-<h1>Stats:</h1>
+<h1>Stats</h1>
 
-<ul>
-	{#await data}
-		Loading users...
-	{:then data}
-		{#each data.users as { id, name, lowest }}
-			<li><UserCard {id} {name} {lowest} /></li>
-		{/each}
-	{/await}
-</ul>
+{#if userFetched}
+<Grid spacing="xs" justify="center">
+    <Grid.Col span={12}><LowestEverStatPaper name="Lowest size ever" value={$botUser.cockStats.lowestSize}/></Grid.Col>
+    <Grid.Col span={6}><UserStatPaper name="Highest size ever" value={$botUser.cockStats.highestSize} /></Grid.Col>
+    <Grid.Col span={6}><UserStatPaper name="Current size" value={$botUser.cockStats.currentSize}/></Grid.Col>
+    <Grid.Col span={12}><UserStatPaper name="Wins overall" value={$botUser.cockStats.wins} /></Grid.Col>
+    
+	<Grid.Col span={4}><UserStatPaper name="Messages" value={$botUser.stats.messagesSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Images" value={$botUser.stats.imagesSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Videos" value={$botUser.stats.videosSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Krujki" value={$botUser.stats.circlesSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Polls" value={$botUser.stats.pollsSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Voices" value={$botUser.stats.voicesSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Stickers" value={$botUser.stats.stickersSent} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Bot uses" value={$botUser.stats.botUses} /></Grid.Col>
+</Grid>
+{:else}
+ <h1> Couldn't fetch user data</h1>
+
+{/if}
 
 <svelte:head>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 </svelte:head>
 
 <style>
-	li {
-		list-style-type: none;
-	}
 
 	h1 {
 		color: whitesmoke;
 		font-family: 'Ubuntu', monospace;
 		text-align: center;
 		text-shadow: 2px 2px #1917175a;
-	}
-
-	ul {
-		padding-left: unset;
 	}
 
 	::marker {

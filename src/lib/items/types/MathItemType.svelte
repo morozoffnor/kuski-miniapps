@@ -1,5 +1,4 @@
 <script>
-	import { botUser } from './../../../routes/user/stores.js';
 // @ts-nocheck
 
     import { Button, Flex, Paper, Text, Alert } from '@svelteuidev/core';
