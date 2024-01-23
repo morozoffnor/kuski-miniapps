@@ -218,7 +218,7 @@
 	<Grid.Col span={4}><UserStatPaper name="Voices" value={$botUser.stats.voicesSent} /></Grid.Col>
 	<Grid.Col span={4}><UserStatPaper name="Stickers" value={$botUser.stats.stickersSent} /></Grid.Col>
 	<Grid.Col span={4}><UserStatPaper name="Bot uses" value={$botUser.stats.botUses} /></Grid.Col>
-	<Grid.Col span={4}><UserStatPaper name="Item uses" value={$botUser.stats.itemsUsed} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Itemы" value={$botUser.stats.itemsUsed} /></Grid.Col>
 </Grid>
 {:else}
  <h1> Couldn't fetch user data</h1>
