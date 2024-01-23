@@ -24,7 +24,7 @@
         <div class="progress">
             <Progress
                 size="lg"
-                value={exp}
+                value={exp/10}
             />
             {exp} / 1000 exp
         </div>
