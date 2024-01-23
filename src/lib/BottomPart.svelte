@@ -23,19 +23,23 @@
 		text-align: center;
 		position: relative;
 		text-shadow: 2px 2px #1917175a;
+		font-family: 'Segoe UI', sans-serif;
 	}
 	a {
 		color: whitesmoke;
 		text-decoration: none;
 		text-shadow: 2px 2px #1917175a;
+		font-family: 'Segoe UI', sans-serif;
 	}
 	a:visited {
 		color: whitesmoke;
 		text-decoration: none;
 		text-shadow: 2px 2px #1917175a;
+		font-family: 'Segoe UI', sans-serif;
 	}
 
 	a:hover {
 		text-decoration: underline;
+		font-family: 'Segoe UI', sans-serif;
 	}
 </style>
