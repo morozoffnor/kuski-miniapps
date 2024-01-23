@@ -14,6 +14,7 @@
 	import { Check, Cross2 } from 'radix-icons-svelte';
 	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
 	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
+	import UserComponent from '$lib/profile/UserComponent.svelte';
 	// import { config} from '$lib/server/config.js'
 
 	// @ts-ignore
@@ -108,10 +109,10 @@
 							if (res.status == 200) {
 								$botUser.items.splice(i, 1);
 								$botUser.activatedItem = itemObj;
-								showNotification('success');
 								$botUser = $botUser;
 								modalButtonState.set('none');
 								opened = false;
+								showNotification('success');
 								return
 							}
 						}).catch(err => {
@@ -180,6 +181,9 @@
 		<ItemModalUI item={$botUser.selectedItem} on:message={handleMessage}/>
 	</Modal>
 {/if}
+{#if userFetched}
+	<UserComponent />
+{/if}
 <h1>Inventory</h1>
 {#if userFetched && $botUser.items.length > 0}
 	<SimpleGrid
@@ -214,6 +218,7 @@
 	<Grid.Col span={4}><UserStatPaper name="Voices" value={$botUser.stats.voicesSent} /></Grid.Col>
 	<Grid.Col span={4}><UserStatPaper name="Stickers" value={$botUser.stats.stickersSent} /></Grid.Col>
 	<Grid.Col span={4}><UserStatPaper name="Bot uses" value={$botUser.stats.botUses} /></Grid.Col>
+	<Grid.Col span={4}><UserStatPaper name="Item uses" value={$botUser.stats.itemsUsed} /></Grid.Col>
 </Grid>
 {:else}
  <h1> Couldn't fetch user data</h1>
@@ -228,7 +233,7 @@
 
 	h1 {
 		color: whitesmoke;
-		font-family: 'Ubuntu', monospace;
+		font-family: 'Segoe UI', sans-serif;
 		text-align: center;
 		text-shadow: 2px 2px #1917175a;
 	}

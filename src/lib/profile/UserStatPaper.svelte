@@ -17,7 +17,7 @@
     div {
         margin-top: 0;
         margin-bottom: 5;
-        font-family: 'Alegreya Sans', sans-serif;
+        font-family: 'Segoe UI', sans-serif;
     }
     p {
         margin-top: 0;

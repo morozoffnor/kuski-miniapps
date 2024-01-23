@@ -29,7 +29,7 @@
 		width: auto;
 		padding-left: unset;
 		text-align: center;
-		font-family: 'Ubuntu';
+		font-family: 'Segoe UI', sans-serif;
 		font-size: smaller;
 	}
 </style>

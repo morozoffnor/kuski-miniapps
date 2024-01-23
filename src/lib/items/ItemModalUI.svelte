@@ -76,6 +76,6 @@
 
 <style>
     p {
-        font-family: 'Alegreya Sans', sans-serif;
+        font-family: 'Segoe UI', sans-serif;
     }
 </style>

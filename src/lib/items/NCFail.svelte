@@ -11,7 +11,7 @@
 <svelte:window bind:scrollY={y} />
 
 <div class="notification-container" class:sticky={y >= 0} transition:fade={{duration: 300, easing: circInOut}}>
-    <Notification class="nc" icon={Cross2} color='teal'>
+    <Notification class="nc" icon={Cross2} color='red'>
 		Что-то пошло не так потому что Игорь не умеет программировать
 	</Notification>
    </div>

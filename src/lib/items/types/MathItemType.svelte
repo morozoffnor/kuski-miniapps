@@ -31,6 +31,9 @@
         padding-left: 20;
         margin-top: 0;
         margin-bottom: 5;
-        font-family: 'Alegreya Sans', sans-serif;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    div {
+        font-family: 'Segoe UI', sans-serif;
     }
 </style>
