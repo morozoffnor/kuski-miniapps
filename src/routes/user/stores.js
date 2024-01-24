@@ -21,3 +21,5 @@ export const botUser = writable({});
 export const modalButtonState = writable({});
 export const statuses = writable({});
 export const notification = writable({});
+export const activeUsers = writable({})
+export const selectedUserModal = writable({})

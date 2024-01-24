@@ -129,6 +129,49 @@
 			}, 1000);
 			return;
 		}
+		if (event.detail.type === 'debuff') {
+			const target = event.detail.selectedUser
+			const itemId = event.detail.text
+			console.log('using debuff item ' + event.detail.text)
+
+			setTimeout(async () => {
+				for (let i=0; i < $botUser.items.length; i++) {
+					if ($botUser.items[i]._id == itemId) {
+						let reqData = {
+							userId: String($botUser.userid),
+							itemId: $botUser.items[i]._id,
+							target: String(target)
+						}
+						await fetch(
+							`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/items/use/debuff`,
+							{
+								method: "POST",
+								headers: {
+									'x-api-token': `${data.env.BOTAPI_TOKEN}`,
+									'Content-Type': "application/json"
+								},
+								body: JSON.stringify(reqData)
+							}
+						).then(res => {
+							if (res.status == 200) {
+								$botUser.items.splice(i, 1);
+								$botUser = $botUser;
+								modalButtonState.set('none');
+								opened = false;
+								showNotification('success');
+								return
+							}
+						}).catch(err => {
+							modalButtonState.set('none');
+							opened = false;
+							showNotification('fail');
+						})
+
+					}
+				}
+			})
+
+		}
 		
 		if (event.detail.text === 'closeModal') {
 			opened = false;
@@ -136,8 +179,6 @@
 			presentItemModal(event.detail.text);
 		}
 	}
-	let notificationShown = false;
-	let failedNotificationShown = false;
 	function showNotification(state) {
 		$notification = state;
 		setTimeout(() => {
@@ -178,7 +219,7 @@
 		on:message={handleMessage}
 	>
 		<!-- Modal Content -->
-		<ItemModalUI item={$botUser.selectedItem} on:message={handleMessage}/>
+		<ItemModalUI item={$botUser.selectedItem} data={data} on:message={handleMessage}/>
 	</Modal>
 {/if}
 {#if userFetched}

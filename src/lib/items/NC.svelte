@@ -12,7 +12,7 @@
 
 <div class="notification-container" class:sticky={y >= 0} transition:fade={{duration: 300, easing: circInOut}}>
     <Notification class="nc" icon={Check} color='teal'>
-		The item fill take effect on your next size
+		The item fill take effect on next size
 	</Notification>
    </div>
 
