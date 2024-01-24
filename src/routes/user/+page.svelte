@@ -222,6 +222,8 @@
 		<ItemModalUI item={$botUser.selectedItem} data={data} on:message={handleMessage}/>
 	</Modal>
 {/if}
+
+<a href="/items">Items</a>
 {#if userFetched}
 	<UserComponent />
 {/if}
