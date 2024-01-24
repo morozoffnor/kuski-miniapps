@@ -24,23 +24,31 @@ const dispatch = createEventDispatcher();
 </script>
 
 
-<div>
+<div class="container">
     <Flex justify="center">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <img src={"/items/" + itemObj.icon } alt="item" on:click={useClicked(itemObj._id)} />
     </Flex>
-    <Button on:click={useClicked(itemObj._id)} color="gray" ripple>
-        {itemObj.name}
-    </Button>
+    <div class="button">
+        <Button on:click={useClicked(itemObj._id)} color="gray" ripple>
+            {itemObj.name}
+        </Button>
+    </div>
     
 </div>
 
 
 <style>
-    div {
+    .container {
         align-self: center;
         margin: auto;
+        display: table;
+    }
+    .button {
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
     }
     img {
         margin-left: auto;
