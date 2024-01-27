@@ -7,11 +7,9 @@
 	import { tgUserData, botUser, modalButtonState, notification } from './stores.js';
 	// @ts-ignore
 	export let data;
-	import UserCard from '$lib/UserCard.svelte';
 	import { getUserData } from '../cybersport/data.js';
 	import { onMount } from 'svelte';
-	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid, Paper } from '@svelteuidev/core';
-	import { Check, Cross2 } from 'radix-icons-svelte';
+	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid } from '@svelteuidev/core';
 	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
 	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
 	import UserComponent from '$lib/profile/UserComponent.svelte';
