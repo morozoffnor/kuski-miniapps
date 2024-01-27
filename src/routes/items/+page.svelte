@@ -5,6 +5,7 @@
 	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
 	import ItemCard from '$lib/items/ItemCard.svelte';
 	import ItemName from '$lib/items/gallery/ItemName.svelte';
+	import GalleryItemCard from '$lib/items/gallery/GalleryItemCard.svelte';
 
 	export let data
 
@@ -58,9 +59,12 @@
 			</Grid.Col>
 			{#each value as item}
 				<Grid.Col span={4}>
-					<ItemCard itemObj={item} />
+					<GalleryItemCard itemObj={item} />
 				</Grid.Col>
 			{/each}
+			<Grid.Col span={8}>
+				{items.get(key)[0].description}
+			</Grid.Col>
 		</Grid>
 	{/each}
 
