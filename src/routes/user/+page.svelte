@@ -247,7 +247,7 @@
 {#if userFetched}
 <Grid spacing="xs" justify="center">
     <Grid.Col span={12}><LowestEverStatPaper name="Lowest size ever" value={$botUser.cockStats.lowestSize}/></Grid.Col>
-    <Grid.Col span={6}><UserStatPaper name="Highest size ever" value={$botUser.cockStats.highestSize} /></Grid.Col>
+    <Grid.Col span={6}><UserStatPaper name="Highest size" value={$botUser.cockStats.highestSize} /></Grid.Col>
     <Grid.Col span={6}><UserStatPaper name="Current size" value={$botUser.cockStats.currentSize}/></Grid.Col>
     <Grid.Col span={12}><UserStatPaper name="Wins overall" value={$botUser.cockStats.wins} /></Grid.Col>
     
