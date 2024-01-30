@@ -7,9 +7,11 @@
 	import { tgUserData, botUser, modalButtonState, notification } from './stores.js';
 	// @ts-ignore
 	export let data;
+	import UserCard from '$lib/UserCard.svelte';
 	import { getUserData } from '../cybersport/data.js';
 	import { onMount } from 'svelte';
-	import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid } from '@svelteuidev/core';
+import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid, Paper, Button } from '@svelteuidev/core';
+	import { Check, Cross2 } from 'radix-icons-svelte';
 	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
 	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
 	import UserComponent from '$lib/profile/UserComponent.svelte';
@@ -220,24 +222,35 @@
 		<ItemModalUI item={$botUser.selectedItem} data={data} on:message={handleMessage}/>
 	</Modal>
 {/if}
+
 {#if userFetched}
 	<UserComponent />
 {/if}
 <h1>Inventory</h1>
 {#if userFetched && $botUser.items.length > 0}
-	<SimpleGrid
-		
-		cols={3}
-		spacing={2}
-	>
+	<Grid spacing="xs">
+
+
 		{#if $botUser.items.length > 0}
 			{#each $botUser.items as itemObj}
-				<ItemCard itemObj={itemObj} on:message={handleMessage} />
+				<Grid.Col span={4}><ItemCard itemObj={itemObj} on:message={handleMessage} /></Grid.Col>
 			{/each}
 		{/if}
-	</SimpleGrid>
+
+		<Grid.Col span={12}>
+			<br>
+			<Button variant="light" color="gray" size="lg" href="./items" fullSize ripple>Items Gallery</Button>
+		</Grid.Col>
+	</Grid>
 {:else}
+
 	<Flex justify="space-around"><p>You have no items :(</p></Flex>
+	<Grid>
+		<Grid.Col span={12}>
+			<Button variant="light" color="gray" size="lg" href="./items" fullSize ripple>Items Gallery</Button>
+		</Grid.Col>
+
+	</Grid>
 {/if}
 
 <h1>Stats</h1>
@@ -245,7 +258,7 @@
 {#if userFetched}
 <Grid spacing="xs" justify="center">
     <Grid.Col span={12}><LowestEverStatPaper name="Lowest size ever" value={$botUser.cockStats.lowestSize}/></Grid.Col>
-    <Grid.Col span={6}><UserStatPaper name="Highest size" value={$botUser.cockStats.highestSize} /></Grid.Col>
+    <Grid.Col span={6}><UserStatPaper name="Highest size ever" value={$botUser.cockStats.highestSize} /></Grid.Col>
     <Grid.Col span={6}><UserStatPaper name="Current size" value={$botUser.cockStats.currentSize}/></Grid.Col>
     <Grid.Col span={12}><UserStatPaper name="Wins overall" value={$botUser.cockStats.wins} /></Grid.Col>
     
@@ -276,6 +289,11 @@
 		font-family: 'Segoe UI', sans-serif;
 		text-align: center;
 		text-shadow: 2px 2px #1917175a;
+	}
+
+	p{
+		font-family: 'Segoe UI', sans-serif;
+		color: rgba(84,81,81,0.38)
 	}
 
 	::marker {
