@@ -1,6 +1,6 @@
 <script>
 	import {botUser} from '../user/stores.js';
-	import {Grid, Loader, Center} from '@svelteuidev/core';
+	import { Grid, Loader, Center, Button } from '@svelteuidev/core';
 	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
 	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
 	import ItemCard from '$lib/items/ItemCard.svelte';
@@ -47,6 +47,8 @@
 	}
 </script>
 
+<Button variant="default" color="gray" href="./user">Go back</Button>
+
 {#await getAllItems()}
 	<Center>
 		<Loader variant='bars' size="lg"/>
@@ -63,7 +65,12 @@
 				</Grid.Col>
 			{/each}
 			<Grid.Col span={8}>
-				{items.get(key)[0].description}
+				{#each value as item}
+					<p>{item.rarity}: {item.effect.descriptions}</p>
+				{/each}
+			</Grid.Col>
+			<Grid.Col span={12}>
+				<p>{items.get(key)[0].description}</p>
 			</Grid.Col>
 		</Grid>
 	{/each}
@@ -71,3 +78,9 @@
 {:catch error}
 	{error}
 {/await}
+
+<style>
+	p {
+		font-family: 'Segoe UI', sans-serif;
+	}
+</style>

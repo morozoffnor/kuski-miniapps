@@ -1,5 +1,5 @@
 <script>
-	import { Divider, Paper, Text } from '@svelteuidev/core';
+	import { Divider, Text } from '@svelteuidev/core';
 	export let name
 </script>
 

@@ -31,23 +31,9 @@ const dispatch = createEventDispatcher();
         <img src={"/items/" + itemObj.icon } alt="item" on:click={useClicked(itemObj._id)} />
     </Flex>
     <div class="button">
-		{#if itemObj.rarity === 'Common'}
-			<Button on:click={useClicked(itemObj._id)} color="gray"  ripple>
-				{itemObj.rarity}
-			</Button>
-		{:else if itemObj.rarity === 'Uncommon'}
-			<Button variant="gradient" gradient={{ from: 'lime', to: 'blue', deg: 100 }}  ripple>
-				{itemObj.rarity}
-			</Button>
-		{:else if itemObj.rarity === 'Rare'}
-			<Button variant="gradient" gradient={{ from: 'blue', to: 'red', deg: 100 }}  ripple>
-				{itemObj.rarity}
-			</Button>
-		{:else if itemObj.rarity === 'Legendary'}
-			<Button variant="gradient" gradient={{ from: 'red', to: 'violet', deg: 100 }}   ripple>
-				{itemObj.rarity}
-			</Button>
-		{/if}
+		<Button on:click={useClicked(itemObj._id)} color="gray"  ripple>
+			{itemObj.rarity}
+		</Button>
     </div>
     
 </div>

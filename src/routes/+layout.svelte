@@ -18,5 +18,8 @@
 {/if}
 
 <style>
+	::global {
+		font-family: 'Segoe UI', sans-serif;
+	}
 
 </style>
