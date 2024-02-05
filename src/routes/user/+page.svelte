@@ -7,11 +7,9 @@
 	import { tgUserData, botUser, modalButtonState, notification } from './stores.js';
 	// @ts-ignore
 	export let data;
-	import UserCard from '$lib/UserCard.svelte';
 	import { getUserData } from '../cybersport/data.js';
 	import { onMount } from 'svelte';
-import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid, Paper, Button } from '@svelteuidev/core';
-	import { Check, Cross2 } from 'radix-icons-svelte';
+	import { Modal, useSvelteUITheme, Flex, Grid, Button } from '@svelteuidev/core';
 	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
 	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
 	import UserComponent from '$lib/profile/UserComponent.svelte';
@@ -241,6 +239,9 @@ import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid, Paper, Button } from '
 			<br>
 			<Button variant="light" color="gray" size="lg" href="./items" fullSize ripple>Items Gallery</Button>
 		</Grid.Col>
+		<Grid.Col span={12}>
+			<Button variant="light" color="gray" size="lg" href="user/names" fullSize ripple>Cock Names</Button>
+		</Grid.Col>
 	</Grid>
 {:else}
 
@@ -248,6 +249,10 @@ import { SimpleGrid, Modal, useSvelteUITheme, Flex, Grid, Paper, Button } from '
 	<Grid>
 		<Grid.Col span={12}>
 			<Button variant="light" color="gray" size="lg" href="./items" fullSize ripple>Items Gallery</Button>
+		</Grid.Col>
+
+		<Grid.Col span={12}>
+			<Button variant="light" color="gray" size="lg" href="/names" fullSize ripple>Cock Names</Button>
 		</Grid.Col>
 
 	</Grid>

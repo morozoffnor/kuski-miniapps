@@ -1,9 +1,5 @@
 <script>
-	import {botUser} from '../user/stores.js';
 	import { Grid, Loader, Center, Button } from '@svelteuidev/core';
-	import UserStatPaper from '$lib/profile/UserStatPaper.svelte';
-	import LowestEverStatPaper from '$lib/profile/LowestEverStatPaper.svelte';
-	import ItemCard from '$lib/items/ItemCard.svelte';
 	import ItemName from '$lib/items/gallery/ItemName.svelte';
 	import GalleryItemCard from '$lib/items/gallery/GalleryItemCard.svelte';
 
@@ -28,8 +24,6 @@
 
 	async function sortItemsIntoGroups(items) {
 		let sorted = new Map()
-		let name = ''
-		let count = 0
 		for (let i = 0; i < items.length; i++) {
 			const item = items[i]
 			if (!sorted.has(item.name)) {
