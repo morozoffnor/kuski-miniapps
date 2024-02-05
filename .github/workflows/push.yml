@@ -15,6 +15,9 @@ on:
         default: 'true'
         description: 'Deploy after push'
         required: true
+    push:
+      branches:
+        - "develop"
 jobs:
   push:
     runs-on: ubuntu-latest
