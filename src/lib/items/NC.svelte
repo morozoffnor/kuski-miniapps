@@ -3,7 +3,9 @@
 	import { Check } from 'radix-icons-svelte';
     import { fade } from 'svelte/transition'
     import { circInOut } from 'svelte/easing'
-    let y = 0;
+	import {notificationText} from '../../routes/user/stores.js';
+
+	let y = 0;
 
 
 </script>
@@ -12,7 +14,11 @@
 
 <div class="notification-container" class:sticky={y >= 0} transition:fade={{duration: 300, easing: circInOut}}>
     <Notification class="nc" icon={Check} color='teal'>
-		The item fill take effect on next size
+		{#if $notificationText}
+			{$notificationText}
+		{:else}
+			The item fill take effect on next size
+		{/if}
 	</Notification>
    </div>
 

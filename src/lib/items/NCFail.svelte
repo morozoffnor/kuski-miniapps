@@ -3,6 +3,7 @@
 	import { Cross2 } from 'radix-icons-svelte';
     import { fade } from 'svelte/transition'
     import { circInOut } from 'svelte/easing'
+	import {notificationText} from '../../routes/user/stores.js';
     let y = 0;
 
 
@@ -12,7 +13,11 @@
 
 <div class="notification-container" class:sticky={y >= 0} transition:fade={{duration: 300, easing: circInOut}}>
     <Notification class="nc" icon={Cross2} color='red'>
-		Что-то пошло не так потому что Игорь не умеет программировать
+		{#if $notificationText}
+			{$notificationText}
+		{:else}
+			Что-то пошло не так потому что Игорь не умеет программировать
+		{/if}
 	</Notification>
    </div>
 
