@@ -98,6 +98,9 @@
 				};
 				modalStore.close();
 				toastStore.trigger(toast);
+				setTimeout(() => {
+					handleReload()
+				}, 500);
 			} else {
 				const toast: ToastSettings = {
 					background: "variant-filled-error",
@@ -108,6 +111,9 @@
 			}
 
 		})
+	}
+	function handleReload() {
+		window.location.reload(); // Reloads page from server
 	}
 	let selectedTarget = "тетс"
 
