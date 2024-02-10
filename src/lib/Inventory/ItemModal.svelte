@@ -2,6 +2,7 @@
 	import type { SvelteComponent } from 'svelte';
 
 	import {config, type Config} from '../../stores/config'
+	import { invalidateAll } from "$app/navigation";
 
 
 	// Stores
@@ -58,6 +59,10 @@
 				};
 				modalStore.close();
 				toastStore.trigger(toast);
+				await invalidateAll();
+				setTimeout(() => {
+					handleReload()
+				}, 500);
 			} else {
 				const toast: ToastSettings = {
 					background: "variant-filled-error",
@@ -65,9 +70,14 @@
 				};
 				modalStore.close();
 				toastStore.trigger(toast);
+
+
 			}
 
 		})
+	}
+	function handleReload() {
+		window.location.reload(); // Reloads page from server
 	}
 
 	// Base Classes
