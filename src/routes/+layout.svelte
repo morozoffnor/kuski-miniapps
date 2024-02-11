@@ -102,6 +102,8 @@
 		}
 	})
 
+	let menu = '/icons/menu-grid-svgrepo-com.svg'
+
 </script>
 <Modal components={modalRegistry}/>
 <Toast />
@@ -129,8 +131,9 @@
 
 				<div data-popup="popupFeatured">
 					<div class="btn-group-vertical variant-filled">
-						<a href="/" class="btn variant-filled" data-sveltekit-preload-data="hover">Inventory</a>
-						<a href="/stats" class="btn variant-filled" data-sveltekit-preload-data="hover">Stats</a>
+						<a href="/" data-sveltekit-preload-data="hover"><button>Inventory</button></a>
+						<a href="/stats" data-sveltekit-preload-data="hover"><button>Stats</button></a>
+
 					</div>
 
 				</div>
