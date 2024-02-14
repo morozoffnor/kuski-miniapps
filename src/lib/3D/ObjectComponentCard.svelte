@@ -65,6 +65,7 @@
 			// } );
 
 			let chest = object.scene
+			chest.scale.set(3, 3, 3);
 			scene.add(chest)
 			console.log(scene)
 
@@ -100,7 +101,7 @@
 <T.DirectionalLight
 	color="#ffffff"
 	intensity={1}
-	position={[10, 10, 0]}
+	position={[10, 10, 5]}
 	shadow.camera.top={8}
 	castShadow
 />
