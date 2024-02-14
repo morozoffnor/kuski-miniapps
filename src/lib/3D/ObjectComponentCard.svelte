@@ -33,6 +33,16 @@
 	export let color
 	export let intensity
 
+	export let xx
+	export let yy
+	export let zz
+	export let intensity2
+
+	export let xxx
+	export let yyy
+	export let zzz
+	export let intensity3
+
 	// const scene = new Three.Scene();
 	// const obj = useLoader(OBJLoader).load('/3d/pump/pump_uvs.obj')
 
@@ -87,6 +97,20 @@
 	color="#fff2cc"
 	intensity={Number(intensity)}
 	position={[Number(x), Number(y), Number(z)]}
+	shadow.camera.top={8}
+	castShadow
+/>
+<T.DirectionalLight
+	color="#fff2cc"
+	intensity={Number(intensity2)}
+	position={[Number(xx), Number(yy), Number(zz)]}
+	shadow.camera.top={8}
+	castShadow
+/>
+<T.DirectionalLight
+	color="#fff2cc"
+	intensity={Number(intensity3)}
+	position={[Number(xxx), Number(yyy), Number(zzz)]}
 	shadow.camera.top={8}
 	castShadow
 />
