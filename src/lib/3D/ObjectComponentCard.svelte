@@ -1,13 +1,8 @@
 <script lang="ts">
 	import { T, useThrelte } from '@threlte/core';
-	import { Grid, OrbitControls, TransformControls } from '@threlte/extras'
-	import * as Three from 'three'
-	import { DEG2RAD } from 'three/src/math/MathUtils'
+	import { Grid, OrbitControls } from '@threlte/extras'
 
-	import {useLoader} from '@threlte/core';
-	import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-	import { Mesh, MeshBasicMaterial } from 'three';
-	import {TextureLoader} from 'three';
+	import {MeshBasicMaterial } from 'three';
 	import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 	const {
@@ -32,6 +27,12 @@
 		shadows                  // CurrentWritable<boolean | ShadowMapType>
 	} = useThrelte()
 
+	export let x
+	export let y
+	export let z
+	export let color
+	export let intensity
+
 	// const scene = new Three.Scene();
 	// const obj = useLoader(OBJLoader).load('/3d/pump/pump_uvs.obj')
 
@@ -47,25 +48,8 @@
 		function ( object ) {
 			console.log(object);
 
-			let mat = new MeshBasicMaterial()
-
-			// const material = new Three.MeshStandardMaterial({
-			// 	map: new TextureLoader().load('/3d/pump/pump_uvs_initialShadingGroup_BaseColor.png'),
-			// 	normalMap: new TextureLoader().load('/3d/pump/pump_uvs_initialShadingGroup_Normal.png'),
-			// 	roughnessMap: new TextureLoader().load('/3d/pump/pump_uvs_initialShadingGroup_Roughness.png'),
-			// 	metalnessMap: new TextureLoader().load('/3d/pump/pump_uvs_initialShadingGroup_Metallic.png'),
-			// 	emissiveMap: new TextureLoader().load('/3d/pump/pump_uvs_initialShadingGroup_Emissive.png'),
-			//
-			// });
-			// material.needsUpdate = true
-			// object.traverse( function( child ) {
-			// 	if ( child instanceof Three.Mesh ) {
-			// 		child.material = material;
-			// 	}
-			// } );
-
 			let chest = object.scene
-			chest.scale.set(3, 3, 3);
+			chest.scale.set(10, 10, 10);
 			scene.add(chest)
 			console.log(scene)
 
@@ -85,26 +69,34 @@
 	);
 </script>
 
+
 <!-- Grid -->
 <Grid cellColor="#808080" sectionSize={0} />
 
 <!-- Camera -->
-<T.PerspectiveCamera position={[20, 20, 20]} fov={50} makeDefault>
+<T.PerspectiveCamera position={[30, 30, 20]} fov={50} makeDefault>
 	<!-- Controls -->
-	<OrbitControls enableDamping autoRotate/>
+	<OrbitControls enableDamping autoRotate enabled={true} />
 </T.PerspectiveCamera>
 
-<!-- Lights the scene equally -->
-<T.AmbientLight color="#ffffff" intensity={1.5} />
-
-<!-- Light that casts a shadow -->
+<T.AmbientLight
+	color="#cfe2f3"
+	intensity={2.5}
+/>
 <T.DirectionalLight
-	color="#ffffff"
-	intensity={1}
-	position={[10, 10, 5]}
+	color="#fff2cc"
+	intensity={Number(intensity)}
+	position={[Number(x), Number(y), Number(z)]}
 	shadow.camera.top={8}
 	castShadow
 />
+<!--<T.DirectionalLight-->
+<!--	color="#ffffff"-->
+<!--	intensity={5}-->
+<!--	position={[10, 100, 50]}-->
+<!--	shadow.camera.top={8}-->
+<!--	castShadow-->
+<!--/>-->
 
 <!-- Sphere -->
 <!--{#if loader}-->
