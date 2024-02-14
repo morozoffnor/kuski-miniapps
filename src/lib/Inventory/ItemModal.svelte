@@ -89,12 +89,24 @@
 <!-- @component This example creates a simple form modal. -->
 
 {#if $modalStore[0]}
+
 	<div class="modal-example-form {cBase}">
 		<header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
 
 
 		<div class="max-h-[200px] overflow-auto space-y-4">
-			<article>{$modalStore[0].body ?? '(body missing)'}</article>
+			<article>
+				{$modalStore[0].body ?? '(body missing)'}
+			</article>
+		</div>
+
+		<div class="container w-full flex justify-center">
+			<div class="container flex justify-center">
+				<iframe title="Stylized Skull Study" frameborder="0" allowfullscreen mozallowfullscreen="true"
+						webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+						execution-while-out-of-viewport execution-while-not-rendered web-share width="300" height="300"
+						src="https://sketchfab.com/models/c42d5edd5fcf4172aacdbba653be4585/embed?autospin=1&autostart=1&preload=1&ui_hint=0&dnt=1&transparent=1"></iframe>
+			</div>
 		</div>
 
 
