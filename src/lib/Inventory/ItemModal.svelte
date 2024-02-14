@@ -9,6 +9,8 @@
 	import { getModalStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import { botUser } from '../../stores/userStores';
+	import ObjectComponentCard from '$lib/3D/ObjectComponentCard.svelte';
+	import { Canvas } from '@threlte/core';
 
 	// Props
 	/** Exposes parent props to this component. */
@@ -98,15 +100,6 @@
 			<article>
 				{$modalStore[0].body ?? '(body missing)'}
 			</article>
-		</div>
-
-		<div class="container w-full flex justify-center">
-			<div class="container flex justify-center">
-				<iframe title="Stylized Skull Study" frameborder="0" allowfullscreen mozallowfullscreen="true"
-						webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
-						execution-while-out-of-viewport execution-while-not-rendered web-share width="300" height="300"
-						src="https://sketchfab.com/models/c42d5edd5fcf4172aacdbba653be4585/embed?autospin=1&autostart=1&preload=1&ui_hint=0&dnt=1&transparent=1"></iframe>
-			</div>
 		</div>
 
 
