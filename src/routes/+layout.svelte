@@ -133,9 +133,10 @@
 					<div class="btn-group-vertical variant-filled">
 						<a href="/" data-sveltekit-preload-data="hover"><button>Inventory</button></a>
 						<a href="/stats" data-sveltekit-preload-data="hover"><button>Stats</button></a>
+						<a href="/3d" data-sveltekit-preload-data="hover"><button>Test 3D</button></a>
 
 					</div>
-
+					<div class="arrow variant-filled" />
 				</div>
 
 			</svelte:fragment>
