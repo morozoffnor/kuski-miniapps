@@ -27,21 +27,7 @@
 		shadows                  // CurrentWritable<boolean | ShadowMapType>
 	} = useThrelte()
 
-	export let x
-	export let y
-	export let z
-	export let color
-	export let intensity
 
-	export let xx
-	export let yy
-	export let zz
-	export let intensity2
-
-	export let xxx
-	export let yyy
-	export let zzz
-	export let intensity3
 
 	// const scene = new Three.Scene();
 	// const obj = useLoader(OBJLoader).load('/3d/pump/pump_uvs.obj')
@@ -59,7 +45,7 @@
 			console.log(object);
 
 			let chest = object.scene
-			chest.scale.set(10, 10, 10);
+			chest.scale.set(2, 2, 2);
 			scene.add(chest)
 			console.log(scene)
 
@@ -81,12 +67,12 @@
 
 
 <!-- Grid -->
-<Grid cellColor="#808080" sectionSize={0} />
+<!--<Grid cellColor="#808080" sectionSize={0} />-->
 
 <!-- Camera -->
-<T.PerspectiveCamera position={[30, 30, 20]} fov={50} makeDefault>
+<T.PerspectiveCamera position={[2, 7, 6]} fov={50} makeDefault>
 	<!-- Controls -->
-	<OrbitControls enableDamping autoRotate enabled={true} />
+	<OrbitControls enableDamping autoRotate enabled={false} />
 </T.PerspectiveCamera>
 
 <T.AmbientLight
@@ -95,22 +81,8 @@
 />
 <T.DirectionalLight
 	color="#fff2cc"
-	intensity={Number(intensity)}
-	position={[Number(x), Number(y), Number(z)]}
-	shadow.camera.top={8}
-	castShadow
-/>
-<T.DirectionalLight
-	color="#fff2cc"
-	intensity={Number(intensity2)}
-	position={[Number(xx), Number(yy), Number(zz)]}
-	shadow.camera.top={8}
-	castShadow
-/>
-<T.DirectionalLight
-	color="#4245f5"
-	intensity={Number(intensity3)}
-	position={[Number(xxx), Number(yyy), Number(zzz)]}
+	intensity={4}
+	position={[10, 10, 10]}
 	shadow.camera.top={8}
 	castShadow
 />
