@@ -38,9 +38,7 @@
 
 <div class="card card-hover cursor-pointer" on:click={triggerModal}>
 	<header class="card-header flex justify-center">
-			<Canvas size={{width:100, height:100}}>
-				<ObjectComponentCardNew />
-			</Canvas>
+		<img src={"/items/" + item.icon } alt="item"/>
 	</header>
 	<section class="p-4 text-center">
 		{item.name}
