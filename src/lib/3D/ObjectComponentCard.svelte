@@ -108,7 +108,7 @@
 	castShadow
 />
 <T.DirectionalLight
-	color="#4245f5"
+	color="#fff2cc"
 	intensity={Number(intensity3)}
 	position={[Number(xxx), Number(yyy), Number(zzz)]}
 	shadow.camera.top={8}
