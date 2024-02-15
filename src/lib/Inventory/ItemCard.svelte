@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import ItemModal from '$lib/Inventory/ItemModal.svelte';
+	import { Canvas } from '@threlte/core';
+	import ObjectComponentCardNew from '$lib/3D/ObjectComponentCardNew.svelte';
 
 	const modalStore = getModalStore();
 
@@ -36,7 +38,9 @@
 
 <div class="card card-hover cursor-pointer" on:click={triggerModal}>
 	<header class="card-header flex justify-center">
-			<img src={"/items/" + item.icon } alt="item"/>
+			<Canvas size={{width:100, height:100}}>
+				<ObjectComponentCardNew />
+			</Canvas>
 	</header>
 	<section class="p-4 text-center">
 		{item.name}

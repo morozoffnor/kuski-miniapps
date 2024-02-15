@@ -21,7 +21,7 @@
 
 <div class="container h-full flex justify-center p-20">
 
-	<div class="h-80 pt-10">
+	<div class="h-80 pt-1">
 		Direct light controls for Kirich
 		<br>
 		<input bind:value={xcord} class="input w-16" type="text" placeholder="x"/>
@@ -41,17 +41,13 @@
 								 intensity3={intensity3}
 			/>
 		</Canvas>
-		Color
-		<br>
-		<input bind:value={color} class="input" type="text" />
 		<br>
 		Intensity
-		<br>
-		<input bind:value={intensity} class="input" type="text" />
-		<br>
-		<input bind:value={intensity2} class="input" type="text" />
-		<br>
-		<input bind:value={intensity3} class="input" type="text" />
+		<input bind:value={intensity} class="input w-16" type="text" />
+
+		<input bind:value={intensity2} class="input w-16" type="text" />
+
+		<input bind:value={intensity3} class="input w-16" type="text" />
 	</div>
 </div>
 
