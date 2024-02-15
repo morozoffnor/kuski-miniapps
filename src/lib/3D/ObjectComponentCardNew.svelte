@@ -3,7 +3,7 @@
 	import { Grid, OrbitControls } from '@threlte/extras'
 
 	import {MeshBasicMaterial } from 'three';
-	import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 	const {
 		size,                    // Readable<Size>
