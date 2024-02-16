@@ -59,7 +59,8 @@
 			console.log(object);
 
 			let chest = object.scene
-			chest.scale.set(10, 10, 10);
+			chest.scale.set(5, 5, 5);
+
 			scene.add(chest)
 			console.log(scene)
 
@@ -77,6 +78,8 @@
 
 		}
 	);
+
+
 </script>
 
 
@@ -84,7 +87,7 @@
 <Grid cellColor="#808080" sectionSize={0} />
 
 <!-- Camera -->
-<T.PerspectiveCamera position={[30, 30, 20]} fov={50} makeDefault>
+<T.PerspectiveCamera position={[30, 30, 50]} fov={50} makeDefault>
 	<!-- Controls -->
 	<OrbitControls enableDamping autoRotate enabled={true} />
 </T.PerspectiveCamera>

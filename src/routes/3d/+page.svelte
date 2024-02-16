@@ -2,20 +2,20 @@
 	import { Canvas } from '@threlte/core'
 	import ObjectComponentCard from '$lib/3D/ObjectComponentCard.svelte'
 
-	let xcord = ""
-	let y = ""
-	let z = ""
+	let xcord = "1"
+	let y = "1"
+	let z = "1"
 	let color = "#fff2cc"
-	let intensity = "4"
-	 let xx = ""
-	 let yy = ""
-	 let zz = ""
-	 let intensity2 = "4"
+	let intensity = "10"
+	 let xx = "4"
+	 let yy = "9"
+	 let zz = "6"
+	 let intensity2 = "5"
 
-	 let xxx = ""
-	 let yyy = ""
-	 let zzz = ""
-	 let intensity3 = "4"
+	 let xxx = "2"
+	 let yyy = "-5"
+	 let zzz = "3"
+	 let intensity3 = "6"
 </script>
 
 
