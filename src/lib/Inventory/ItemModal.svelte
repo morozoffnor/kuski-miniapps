@@ -11,7 +11,6 @@
 	import { botUser } from '../../stores/userStores';
 	import ObjectComponentCard from '$lib/3D/ObjectComponentCard.svelte';
 	import { Canvas } from '@threlte/core';
-	import MonolithModel from '$lib/3D/MonolithModel.svelte';
 
 	// Props
 	/** Exposes parent props to this component. */
@@ -102,12 +101,6 @@
 				{$modalStore[0].body ?? '(body missing)'}
 			</article>
 		</div>
-
-		{#if $modalStore[0].title === "Монолит"}
-			<Canvas size={{height: 200, width: 300}}>
-				<MonolithModel/>
-			</Canvas>
-		{/if}
 
 
 		<!-- Enable for debugging: -->

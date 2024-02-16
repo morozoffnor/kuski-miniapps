@@ -39,14 +39,13 @@
 	let model;
 	loader.load(
 		// resource URL
-		'/3d/monolith.glb',
+		'/3d/chest2.glb',
 		// called when resource is loaded
 		function ( object ) {
 			console.log(object);
 
 			let chest = object.scene
 			chest.scale.set(2, 2, 2);
-			// chest.position.set(0,0,10)
 			scene.add(chest)
 			console.log(scene)
 
@@ -71,7 +70,7 @@
 <!--<Grid cellColor="#808080" sectionSize={0} />-->
 
 <!-- Camera -->
-<T.PerspectiveCamera position={[10, 20, 5]} fov={50} makeDefault>
+<T.PerspectiveCamera position={[2, 7, 6]} fov={50} makeDefault>
 	<!-- Controls -->
 	<OrbitControls enableDamping autoRotate enabled={false} />
 </T.PerspectiveCamera>
@@ -83,21 +82,7 @@
 <T.DirectionalLight
 	color="#fff2cc"
 	intensity={4}
-	position={[1, 1, 1]}
-	shadow.camera.top={8}
-	castShadow
-/>
-<T.DirectionalLight
-	color="#fff2cc"
-	intensity={5}
-	position={[4,9,6]}
-	shadow.camera.top={8}
-	castShadow
-/>
-<T.DirectionalLight
-	color="#fff2cc"
-	intensity={6}
-	position={[2,-5,3]}
+	position={[10, 10, 10]}
 	shadow.camera.top={8}
 	castShadow
 />
@@ -113,11 +98,11 @@
 <!--{#if loader}-->
 <!--	<T is={loader} />-->
 <!--{/if}-->
-<!--<T.Mesh position={[0, 4, 0]} castShadow>-->
-<!--&lt;!&ndash;	<T.SphereGeometry args={[4, 64, 64]} />&ndash;&gt;-->
-<!--&lt;!&ndash;	<T.MeshStandardMaterial color="#ffffff" />&ndash;&gt;-->
-<!--&lt;!&ndash;	<TransformControls object={ref} />&ndash;&gt;-->
-<!--</T.Mesh>-->
+<T.Mesh position={[0, 4, 0]} castShadow>
+<!--	<T.SphereGeometry args={[4, 64, 64]} />-->
+<!--	<T.MeshStandardMaterial color="#ffffff" />-->
+<!--	<TransformControls object={ref} />-->
+</T.Mesh>
 
 <!-- Floor -->
 <!--<T.Mesh rotation.x={DEG2RAD * 90} receiveShadow>-->

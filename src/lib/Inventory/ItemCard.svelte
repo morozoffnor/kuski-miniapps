@@ -2,7 +2,7 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import ItemModal from '$lib/Inventory/ItemModal.svelte';
 	import { Canvas } from '@threlte/core';
-	import ObjectComponentCardNew from '$lib/3D/MonolithModel.svelte';
+	import ObjectComponentCardNew from '$lib/3D/ObjectComponentCardNew.svelte';
 
 	const modalStore = getModalStore();
 
