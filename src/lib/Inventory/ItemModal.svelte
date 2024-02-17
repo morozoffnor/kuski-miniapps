@@ -11,6 +11,8 @@
 	import { botUser } from '../../stores/userStores';
 	import ObjectComponentCard from '$lib/3D/ObjectComponentCard.svelte';
 	import { Canvas } from '@threlte/core';
+	import ObjectComponentCardNew from '$lib/3D/ObjectComponentCardNew.svelte';
+	import MonolithModel from '$lib/3D/MonolithModel.svelte';
 
 	// Props
 	/** Exposes parent props to this component. */
@@ -101,6 +103,13 @@
 				{$modalStore[0].body ?? '(body missing)'}
 			</article>
 		</div>
+		<div class="max-h-[200px] w-full">
+			{#if $modalStore[0].title === "Монолит"}
+				<Canvas>
+					<MonolithModel />
+				</Canvas>
+			{/if}
+		</div>
 
 
 		<!-- Enable for debugging: -->
@@ -124,3 +133,11 @@
 		</footer>
 	</div>
 {/if}
+
+<style>
+	.scene {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(hsl(220 14% 20%), hsl(220 20% 10%));
+	}
+</style>

@@ -24,6 +24,7 @@
     "@types/node": "20.11.16",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@yushijinhun/three-minifier-rollup": "^0.4.0",
     "autoprefixer": "10.4.17",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
