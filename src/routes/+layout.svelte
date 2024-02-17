@@ -17,6 +17,7 @@
 	import css from 'highlight.js/lib/languages/css';
 	import javascript from 'highlight.js/lib/languages/javascript';
 	import typescript from 'highlight.js/lib/languages/typescript';
+	import {getCookie, setCookie} from 'svelte-cookie'
 
 	hljs.registerLanguage('xml', xml); // for HTML
 	hljs.registerLanguage('css', css);
@@ -40,7 +41,7 @@
 		itemDebuffModalComponent: {ref: ItemDebuffModal}
 	}
 	// Dev
-	import { tgUser, botUser } from '../stores/userStores';
+	import { tgUser, botUser, cookieSet } from '../stores/userStores';
 	import {config} from '../stores/config';
 	import {devUser} from '$lib/dev';
 	import ItemModal from '$lib/Inventory/ItemModal.svelte';
@@ -82,14 +83,31 @@
 				}
 			);
 			$botUser = await res.json();
+			setCookie('userid', $tgUser.user.id)
 
 			// console.log($botUser);
 		}
-		if (data.env.ENV === 'dev') {
-			$tgUser = devUser
-			console.log($tgUser);
+		// if (data.env.ENV === 'dev') {
+		// 	$tgUser = devUser
+		// 	console.log($tgUser);
+		// 	let res = await fetch(
+		// 		`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUser.user.id}`,
+		// 		{
+		// 			headers: {
+		// 				'x-api-token': `${data.env.BOTAPI_TOKEN}`
+		// 			}
+		// 		}
+		// 	);
+		// 	$botUser = await res.json();
+		// 	setCookie('userid', $tgUser.user.id)
+		// 	// exp = $botUser.lvl.exp
+		// 	console.log($botUser);
+		// }
+		if (getCookie('userid')) {
+			cookiePresent = true
+			$cookieSet.userid = true
 			let res = await fetch(
-				`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${$tgUser.user.id}`,
+				`${data.env.BOTAPI_HOST}:${data.env.BOTAPI_PORT}/user/${getCookie('userid')}`,
 				{
 					headers: {
 						'x-api-token': `${data.env.BOTAPI_TOKEN}`
@@ -97,11 +115,9 @@
 				}
 			);
 			$botUser = await res.json();
-			// exp = $botUser.lvl.exp
-			console.log($botUser);
 		}
-	})
-
+ 	})
+	let cookiePresent = false
 	let menu = '/icons/menu-grid-svgrepo-com.svg'
 
 </script>
@@ -114,9 +130,9 @@
 		<AppBar>
 			<svelte:fragment slot="lead">
 				<strong class="text-xl uppercase">
-					{#if $tgUser.user !== undefined}
+					{#if $botUser.userName !== undefined}
 						<div class="flex justify-center">
-							{$tgUser.user.username}
+							{$botUser.userName}
 							<span class="badge variant-filled ml-1 pl-2 pr-2">{Math.floor(exp/1000)}</span>
 						</div>
 					{:else}
@@ -131,6 +147,9 @@
 
 				<div data-popup="popupFeatured">
 					<div class="btn-group-vertical variant-filled">
+						{#if !$cookieSet.userid}
+							<a href="/auth" data-sveltekit-preload-data="hover"><button>Auth</button></a>
+						{/if}
 						<a href="/" data-sveltekit-preload-data="hover"><button>Inventory</button></a>
 						<a href="/stats" data-sveltekit-preload-data="hover"><button>Stats</button></a>
 						<a href="/3d" data-sveltekit-preload-data="hover"><button>Test 3D</button></a>
