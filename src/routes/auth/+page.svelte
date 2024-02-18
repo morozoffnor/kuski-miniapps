@@ -64,7 +64,7 @@
 			{/if}
 		</div>
 		<div class="flex justify-center mt-3">
-			<h4 class="h4 text-center p-5 text-surface-200">
+			<h4 class="h4 text-center p-5 text-surface">
 				Для авторизации на сайте нужно перейти в личные сообщения бота и отправить команду <code class="code size-auto">/auth</code>
 			</h4>
 		</div>
